@@ -15,5 +15,7 @@ public class WelcomeView extends JFrame{
        setContentPane(mainPanel);
 
        label1.setPreferredSize(new Dimension(400, 200));
+
+       //Comentario
    }
 }
