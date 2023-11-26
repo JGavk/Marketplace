@@ -27,7 +27,7 @@ public class WelcomeView extends JFrame{
        label1.setIcon(new ImageIcon("src/images/Frutas.jpg"));
        nombreField.setPreferredSize(new Dimension(100,100));
        ingresarButton.addActionListener(this::actionPerformed);
-
+       //Mensaje Prueba
     }
 
         public void actionPerformed (ActionEvent e){
