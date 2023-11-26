@@ -15,6 +15,5 @@ public class WelcomeController {
 
     public void StructureOpen () {
         sView = new StructureView();
-        wView.dispose();
     }
 }

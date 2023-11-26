@@ -36,6 +36,7 @@ public class WelcomeView extends JFrame{
         public void actionPerformed (ActionEvent e){
             if(e.getSource()==ingresarButton){
                 controller.StructureOpen();
+                dispose();
             }
 
         }
