@@ -10,7 +10,7 @@
       <component id="ed229" class="javax.swing.JLabel" binding="label1">
         <constraints border-constraint="North"/>
         <properties>
-          <text value="Work Label"/>
+          <text value=""/>
         </properties>
       </component>
     </children>

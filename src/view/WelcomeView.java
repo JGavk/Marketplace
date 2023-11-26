@@ -15,6 +15,7 @@ public class WelcomeView extends JFrame{
        setContentPane(mainPanel);
 
        label1.setPreferredSize(new Dimension(400, 200));
+       label1.setIcon(new ImageIcon("src/images/Frutas.jpg"));
 
        //Comentario
    }
