@@ -13,7 +13,7 @@ public class WelcomeView extends JFrame{
     private JTextField nombreField;
     private JPanel DPanel;
     private JButton ingresarButton;
-    private WelcomeController firstController;
+    private WelcomeController controller;
 
     public WelcomeView (){
        setTitle("Product Manager");
@@ -29,10 +29,13 @@ public class WelcomeView extends JFrame{
        ingresarButton.addActionListener(this::actionPerformed);
        //Mensaje Prueba
     }
+        public void setWelcomeController(WelcomeController controller){
+            this.controller = controller;
+        }
 
         public void actionPerformed (ActionEvent e){
             if(e.getSource()==ingresarButton){
-
+                controller.StructureOpen();
             }
 
         }
