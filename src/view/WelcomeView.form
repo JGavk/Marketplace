@@ -4,7 +4,10 @@
     <constraints>
       <xy x="20" y="20" width="486" height="681"/>
     </constraints>
-    <properties/>
+    <properties>
+      <alignmentX value="0.0"/>
+      <alignmentY value="0.0"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="ed229" class="javax.swing.JLabel" binding="label1">
@@ -13,6 +16,62 @@
           <text value=""/>
         </properties>
       </component>
+      <grid id="b6d4d" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="e2bfb" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <horizontalAlignment value="10"/>
+              <horizontalTextPosition value="11"/>
+              <text value=" Nombre: "/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
+            </properties>
+          </component>
+          <component id="cccbf" class="javax.swing.JTextField" binding="nombreField">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <preferredSize width="200" height="40"/>
+              <text value=""/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="2423c" class="javax.swing.JSeparator">
+        <constraints border-constraint="West"/>
+        <properties>
+          <preferredSize width="100" height="3"/>
+        </properties>
+      </component>
+      <component id="98dbf" class="javax.swing.JSeparator">
+        <constraints border-constraint="East"/>
+        <properties>
+          <preferredSize width="100" height="3"/>
+        </properties>
+      </component>
+      <grid id="78f9" binding="DPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="South"/>
+        <properties>
+          <preferredSize width="100" height="200"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="4b5a4" class="javax.swing.JButton" binding="ingresarButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <preferredSize width="100" height="30"/>
+              <text value="Ingresar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>
