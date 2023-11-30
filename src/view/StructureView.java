@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class StructureView extends JFrame {
@@ -10,6 +11,9 @@ public class StructureView extends JFrame {
     private JTabbedPane tabbedPane1;
     private JPanel compradorPanel;
     private JPanel proveedorPanel;
+    private JPanel cbtnPanel, tablePanel;
+
+    private DefaultTableModel itemTable;
     private String nameField;
 
     public StructureView(){
@@ -21,7 +25,17 @@ public class StructureView extends JFrame {
         setResizable(false);
 
         //inputPanel.setBackground(Color.CYAN);
+        itemTable = new DefaultTableModel();
+        itemTable.addColumn("Product");
+        itemTable.addColumn("Quantity");
+        itemTable.addColumn("Price");
+        JTable table = new JTable(itemTable);
+        JScrollPane scrollPane = new JScrollPane(table);
+        tablePanel.add(scrollPane);
+        table.setModel(itemTable);
+        table.setDefaultEditor(Object.class, null);
 
     }
+
 
 }

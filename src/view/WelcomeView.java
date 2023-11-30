@@ -13,6 +13,8 @@ public class WelcomeView extends JFrame{
     public JTextField nombreField;
     private JPanel DPanel;
     private JButton ingresarButton;
+    private JPanel entracePanel;
+    private JLabel nombreLabel;
     private WelcomeController controller;
 
     public WelcomeView (){
@@ -23,11 +25,15 @@ public class WelcomeView extends JFrame{
        setVisible(true);
        setContentPane(mainPanel);
 
-       label1.setPreferredSize(new Dimension(400, 200));
+       label1.setSize(getWidth(),getHeight());
+       //label1.setPreferredSize(new Dimension(400, 200));
        label1.setIcon(new ImageIcon("src/images/Frutas.jpg"));
+       //nombreLabel.setSize(getWidth()/2,getHeight()/2);
+       //nombreLabel.setIcon(new ImageIcon("src/images/ImagenMercado.jpg"));
        nombreField.setPreferredSize(new Dimension(100,100));
        nombreField.setMinimumSize(null);
        ingresarButton.addActionListener(this::actionPerformed);
+
        //Mensaje Prueba
     }
         public void setWelcomeController(WelcomeController controller){
@@ -42,4 +48,6 @@ public class WelcomeView extends JFrame{
             }
 
         }
+
+
 }

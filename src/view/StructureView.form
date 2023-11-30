@@ -14,7 +14,7 @@
         <properties>
           <preferredSize width="10" height="50"/>
         </properties>
-        <border type="none"/>
+        <border type="bevel-lowered"/>
         <children>
           <component id="7d3d8" class="javax.swing.JLabel">
             <constraints/>
@@ -54,6 +54,38 @@
           <grid id="b3f6" binding="compradorPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <tabbedpane title="Comprador"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="98d04" binding="cbtnPanel" layout-manager="BorderLayout" hgap="1" vgap="1">
+                <constraints border-constraint="South"/>
+                <properties>
+                  <preferredSize width="0" height="150"/>
+                </properties>
+                <border type="bevel-raised"/>
+                <children/>
+              </grid>
+              <grid id="9fdaa" binding="tablePanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="76c02" class="javax.swing.JSeparator">
+                    <constraints border-constraint="East"/>
+                    <properties/>
+                  </component>
+                  <component id="c17f1" class="javax.swing.JSeparator">
+                    <constraints border-constraint="West"/>
+                    <properties/>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="e713d" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Inventario"/>
             </constraints>
             <properties/>
             <border type="none"/>

@@ -10,12 +10,12 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="b6d4d" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+      <grid id="b6d4d" binding="entracePanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
         <constraints border-constraint="Center"/>
         <properties/>
-        <border type="none"/>
+        <border type="bevel-raised"/>
         <children>
-          <component id="e2bfb" class="javax.swing.JLabel">
+          <component id="e2bfb" class="javax.swing.JLabel" binding="nombreLabel">
             <constraints/>
             <properties>
               <alignmentX value="0.0"/>
@@ -55,7 +55,7 @@
         <properties>
           <preferredSize width="100" height="200"/>
         </properties>
-        <border type="none"/>
+        <border type="bevel-raised"/>
         <children>
           <component id="4b5a4" class="javax.swing.JButton" binding="ingresarButton" default-binding="true">
             <constraints/>
@@ -71,7 +71,7 @@
         <properties>
           <preferredSize width="0" height="200"/>
         </properties>
-        <border type="none"/>
+        <border type="bevel-raised"/>
         <children>
           <component id="9d62" class="javax.swing.JLabel" binding="label1">
             <constraints border-constraint="Center"/>
