@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class WelcomeView extends JFrame{
     private JPanel mainPanel;
     private JLabel label1;
-    private JTextField nombreField;
+    public JTextField nombreField;
     private JPanel DPanel;
     private JButton ingresarButton;
     private WelcomeController controller;
@@ -26,6 +26,7 @@ public class WelcomeView extends JFrame{
        label1.setPreferredSize(new Dimension(400, 200));
        label1.setIcon(new ImageIcon("src/images/Frutas.jpg"));
        nombreField.setPreferredSize(new Dimension(100,100));
+       nombreField.setMinimumSize(null);
        ingresarButton.addActionListener(this::actionPerformed);
        //Mensaje Prueba
     }
@@ -35,7 +36,8 @@ public class WelcomeView extends JFrame{
 
         public void actionPerformed (ActionEvent e){
             if(e.getSource()==ingresarButton){
-                controller.StructureOpen();
+                String input = nombreField.getText();
+                controller.StructureOpen(input);
                 dispose();
             }
 

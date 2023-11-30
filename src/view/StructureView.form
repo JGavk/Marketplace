@@ -31,25 +31,50 @@
               <requestFocusEnabled value="true"/>
             </properties>
           </component>
-          <component id="d81fb" class="javax.swing.JLabel">
+          <component id="d81fb" class="javax.swing.JLabel" binding="nameLabel">
             <constraints/>
             <properties>
               <opaque value="false"/>
-              <preferredSize width="77" height="17"/>
-              <text value="Label"/>
+              <preferredSize width="150" height="17"/>
+              <text value=""/>
               <verticalAlignment value="0"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="4f1e6" binding="inputPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
-        <constraints border-constraint="West"/>
+      <tabbedpane id="1511c" binding="tabbedPane1" default-binding="true">
+        <constraints border-constraint="Center"/>
         <properties>
-          <preferredSize width="200" height="0"/>
+          <alignmentX value="1.0"/>
+          <alignmentY value="1.0"/>
+          <preferredSize width="600" height="36"/>
         </properties>
         <border type="none"/>
-        <children/>
-      </grid>
+        <children>
+          <grid id="b3f6" binding="compradorPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Comprador"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="84e13" binding="proveedorPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Proveedor"/>
+            </constraints>
+            <properties>
+              <name value="Proveedor"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </tabbedpane>
+      <component id="9c2bb" class="javax.swing.JSeparator">
+        <constraints border-constraint="East"/>
+        <properties/>
+      </component>
     </children>
   </grid>
 </form>

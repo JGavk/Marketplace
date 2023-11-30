@@ -10,12 +10,6 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="ed229" class="javax.swing.JLabel" binding="label1">
-        <constraints border-constraint="North"/>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
       <grid id="b6d4d" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
         <constraints border-constraint="Center"/>
         <properties/>
@@ -68,6 +62,41 @@
             <properties>
               <preferredSize width="100" height="30"/>
               <text value="Ingresar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="86000" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="North"/>
+        <properties>
+          <preferredSize width="0" height="200"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="9d62" class="javax.swing.JLabel" binding="label1">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <requestFocusEnabled value="true"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="8ed2f" class="javax.swing.JSeparator">
+            <constraints border-constraint="East"/>
+            <properties/>
+          </component>
+          <component id="5e78" class="javax.swing.JSeparator">
+            <constraints border-constraint="North"/>
+            <properties/>
+          </component>
+          <component id="94e90" class="javax.swing.JSeparator">
+            <constraints border-constraint="South"/>
+            <properties/>
+          </component>
+          <component id="2f662" class="javax.swing.JLabel">
+            <constraints border-constraint="West"/>
+            <properties>
+              <preferredSize width="100" height="30"/>
+              <text value=""/>
             </properties>
           </component>
         </children>

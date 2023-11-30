@@ -3,6 +3,8 @@ package controller;
 import view.StructureView;
 import view.WelcomeView;
 
+
+
 public class WelcomeController {
     public StructureView sView;
 
@@ -13,7 +15,8 @@ public class WelcomeController {
         this.sView=sView;
     }
 
-    public void StructureOpen () {
+    public void StructureOpen (String input) {
         sView = new StructureView();
+        sView.nameLabel.setText(input);
     }
 }
