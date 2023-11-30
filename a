@@ -1,0 +1,245 @@
+[33mcommit 362a7c1a1c63bdc7e9e41a83758b1f63ae26300a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Juan Pablo <juan.pablo.puerta@correounivalle.edu.co>
+Date:   Thu Nov 30 13:03:13 2023 -0500
+
+    update to market
+
+[1mdiff --git a/.idea/uiDesigner.xml b/.idea/uiDesigner.xml[m
+[1mindex 618a90a..44b3efd 100644[m
+[1m--- a/.idea/uiDesigner.xml[m
+[1m+++ b/.idea/uiDesigner.xml[m
+[36m@@ -96,15 +96,15 @@[m
+           <preferred-size width="200" height="200" />[m
+         </default-constraints>[m
+       </item>[m
+[32m+[m[32m      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.svg" removable="false" auto-create-binding="false" can-attach-label="false">[m
+[32m+[m[32m        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />[m
+[32m+[m[32m      </item>[m
+       <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.svg" removable="false" auto-create-binding="true" can-attach-label="true">[m
+         <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />[m
+       </item>[m
+       <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.svg" removable="false" auto-create-binding="true" can-attach-label="false">[m
+         <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />[m
+       </item>[m
+[31m-      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.svg" removable="false" auto-create-binding="false" can-attach-label="false">[m
+[31m-        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />[m
+[31m-      </item>[m
+       <item class="javax.swing.JProgressBar" icon="/com/intellij/uiDesigner/icons/progressbar.svg" removable="false" auto-create-binding="true" can-attach-label="false">[m
+         <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1" />[m
+       </item>[m
+[1mdiff --git a/src/controller/WelcomeController.java b/src/controller/WelcomeController.java[m
+[1mindex 8895de5..5cb4d22 100644[m
+[1m--- a/src/controller/WelcomeController.java[m
+[1m+++ b/src/controller/WelcomeController.java[m
+[36m@@ -3,6 +3,8 @@[m [mpackage controller;[m
+ import view.StructureView;[m
+ import view.WelcomeView;[m
+ [m
+[32m+[m
+[32m+[m
+ public class WelcomeController {[m
+     public StructureView sView;[m
+ [m
+[36m@@ -13,7 +15,8 @@[m [mpublic class WelcomeController {[m
+         this.sView=sView;[m
+     }[m
+ [m
+[31m-    public void StructureOpen () {[m
+[32m+[m[32m    public void StructureOpen (String input) {[m
+         sView = new StructureView();[m
+[32m+[m[32m        sView.nameLabel.setText(input);[m
+     }[m
+ }[m
+[1mdiff --git a/src/model/Product.java b/src/model/Product.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a803ad2[m
+[1m--- /dev/null[m
+[1m+++ b/src/model/Product.java[m
+[36m@@ -0,0 +1,4 @@[m
+[32m+[m[32mpackage model;[m
+[32m+[m
+[32m+[m[32mpublic class Product {[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/view/StructureView.form b/src/view/StructureView.form[m
+[1mindex 205d7e8..3ddb682 100644[m
+[1m--- a/src/view/StructureView.form[m
+[1m+++ b/src/view/StructureView.form[m
+[36m@@ -31,25 +31,50 @@[m
+               <requestFocusEnabled value="true"/>[m
+             </properties>[m
+           </component>[m
+[31m-          <component id="d81fb" class="javax.swing.JLabel">[m
+[32m+[m[32m          <component id="d81fb" class="javax.swing.JLabel" binding="nameLabel">[m
+             <constraints/>[m
+             <properties>[m
+               <opaque value="false"/>[m
+[31m-              <preferredSize width="77" height="17"/>[m
+[31m-              <text value="Label"/>[m
+[32m+[m[32m              <preferredSize width="150" height="17"/>[m
+[32m+[m[32m              <text value=""/>[m
+               <verticalAlignment value="0"/>[m
+             </properties>[m
+           </component>[m
+         </children>[m
+       </grid>[m
+[31m-      <grid id="4f1e6" binding="inputPanel" layout-manager="BorderLayout" hgap="0" vgap="0">[m
+[31m-        <constraints border-constraint="West"/>[m
+[32m+[m[32m      <tabbedpane id="1511c" binding="tabbedPane1" default-binding="true">[m
+[32m+[m[32m        <constraints border-constraint="Center"/>[m
+         <properties>[m
+[31m-          <preferredSize width="200" height="0"/>[m
+[32m+[m[32m          <alignmentX value="1.0"/>[m
+[32m+[m[32m          <alignmentY value="1.0"/>[m
+[32m+[m[32m          <preferredSize width="600" height="36"/>[m
+         </properties>[m
+         <border type="none"/>[m
+[31m-        <children/>[m
+[31m-      </grid>[m
+[32m+[m[32m        <children>[m
+[32m+[m[32m          <grid id="b3f6" binding="compradorPanel" layout-manager="BorderLayout" hgap="0" vgap="0">[m
+[32m+[m[32m            <constraints>[m
+[32m+[m[32m              <tabbedpane title="Comprador"/>[m
+[32m+[m[32m            </constraints>[m
+[32m+[m[32m            <properties/>[m
+[32m+[m[32m            <border type="none"/>[m
+[32m+[m[32m            <children/>[m
+[32m+[m[32m          </grid>[m
+[32m+[m[32m          <grid id="84e13" binding="proveedorPanel" layout-manager="BorderLayout" hgap="0" vgap="0">[m
+[32m+[m[32m            <constraints>[m
+[32m+[m[32m              <tabbedpane title="Proveedor"/>[m
+[32m+[m[32m            </constraints>[m
+[32m+[m[32m            <properties>[m
+[32m+[m[32m              <name value="Proveedor"/>[m
+[32m+[m[32m            </properties>[m
+[32m+[m[32m            <border type="none"/>[m
+[32m+[m[32m            <children/>[m
+[32m+[m[32m          </grid>[m
+[32m+[m[32m        </children>[m
+[32m+[m[32m      </tabbedpane>[m
+[32m+[m[32m      <component id="9c2bb" class="javax.swing.JSeparator">[m
+[32m+[m[32m        <constraints border-constraint="East"/>[m
+[32m+[m[32m        <properties/>[m
+[32m+[m[32m      </component>[m
+     </children>[m
+   </grid>[m
+ </form>[m
+[1mdiff --git a/src/view/StructureView.java b/src/view/StructureView.java[m
+[1mindex 12ac985..aa537e6 100644[m
+[1m--- a/src/view/StructureView.java[m
+[1m+++ b/src/view/StructureView.java[m
+[36m@@ -6,16 +6,22 @@[m [mimport java.awt.*;[m
+ public class StructureView extends JFrame {[m
+ [m
+     private JPanel mainSPanel;[m
+[31m-    private JPanel inputPanel;[m
+[32m+[m[32m    public JLabel nameLabel;[m
+[32m+[m[32m    private JTabbedPane tabbedPane1;[m
+[32m+[m[32m    private JPanel compradorPanel;[m
+[32m+[m[32m    private JPanel proveedorPanel;[m
+[32m+[m[32m    private String nameField;[m
+ [m
+     public StructureView(){[m
+         setSize(700,700);[m
+         setLocationRelativeTo(null);[m
+         setVisible(true);[m
+[32m+[m[32m        setDefaultCloseOperation(EXIT_ON_CLOSE);[m
+         setContentPane(mainSPanel);[m
+[32m+[m[32m        setResizable(false);[m
+ [m
+[31m-        inputPanel.setBackground(Color.black);[m
+[31m-    }[m
+[32m+[m[32m        //inputPanel.setBackground(Color.CYAN);[m
+ [m
+[32m+[m[32m    }[m
+ [m
+ }[m
+[1mdiff --git a/src/view/WelcomeView.form b/src/view/WelcomeView.form[m
+[1mindex 9872c0b..865f671 100644[m
+[1m--- a/src/view/WelcomeView.form[m
+[1m+++ b/src/view/WelcomeView.form[m
+[36m@@ -10,12 +10,6 @@[m
+     </properties>[m
+     <border type="none"/>[m
+     <children>[m
+[31m-      <component id="ed229" class="javax.swing.JLabel" binding="label1">[m
+[31m-        <constraints border-constraint="North"/>[m
+[31m-        <properties>[m
+[31m-          <text value=""/>[m
+[31m-        </properties>[m
+[31m-      </component>[m
+       <grid id="b6d4d" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">[m
+         <constraints border-constraint="Center"/>[m
+         <properties/>[m
+[36m@@ -72,6 +66,41 @@[m
+           </component>[m
+         </children>[m
+       </grid>[m
+[32m+[m[32m      <grid id="86000" layout-manager="BorderLayout" hgap="0" vgap="0">[m
+[32m+[m[32m        <constraints border-constraint="North"/>[m
+[32m+[m[32m        <properties>[m
+[32m+[m[32m          <preferredSize width="0" height="200"/>[m
+[32m+[m[32m        </properties>[m
+[32m+[m[32m        <border type="none"/>[m
+[32m+[m[32m        <children>[m
+[32m+[m[32m          <component id="9d62" class="javax.swing.JLabel" binding="label1">[m
+[32m+[m[32m            <constraints border-constraint="Center"/>[m
+[32m+[m[32m            <properties>[m
+[32m+[m[32m              <requestFocusEnabled value="true"/>[m
+[32m+[m[32m              <text value=""/>[m
+[32m+[m[32m            </properties>[m
+[32m+[m[32m          </component>[m
+[32m+[m[32m          <component id="8ed2f" class="javax.swing.JSeparator">[m
+[32m+[m[32m            <constraints border-constraint="East"/>[m
+[32m+[m[32m            <properties/>[m
+[32m+[m[32m          </component>[m
+[32m+[m[32m          <component id="5e78" class="javax.swing.JSeparator">[m
+[32m+[m[32m            <constraints border-constraint="North"/>[m
+[32m+[m[32m            <properties/>[m
+[32m+[m[32m          </component>[m
+[32m+[m[32m          <component id="94e90" class="javax.swing.JSeparator">[m
+[32m+[m[32m            <constraints border-constraint="South"/>[m
+[32m+[m[32m            <properties/>[m
+[32m+[m[32m          </component>[m
+[32m+[m[32m          <component id="2f662" class="javax.swing.JLabel">[m
+[32m+[m[32m            <constraints border-constraint="West"/>[m
+[32m+[m[32m            <properties>[m
+[32m+[m[32m              <preferredSize width="100" height="30"/>[m
+[32m+[m[32m              <text value=""/>[m
+[32m+[m[32m            </properties>[m
+[32m+[m[32m          </component>[m
+[32m+[m[32m        </children>[m
+[32m+[m[32m      </grid>[m
+     </children>[m
+   </grid>[m
+ </form>[m
+[1mdiff --git a/src/view/WelcomeView.java b/src/view/WelcomeView.java[m
+[1mindex d4520d8..0fa0785 100644[m
+[1m--- a/src/view/WelcomeView.java[m
+[1m+++ b/src/view/WelcomeView.java[m
+[36m@@ -10,7 +10,7 @@[m [mimport java.awt.event.ActionListener;[m
+ public class WelcomeView extends JFrame{[m
+     private JPanel mainPanel;[m
+     private JLabel label1;[m
+[31m-    private JTextField nombreField;[m
+[32m+[m[32m    public JTextField nombreField;[m
+     private JPanel DPanel;[m
+     private JButton ingresarButton;[m
+     private WelcomeController controller;[m
+[36m@@ -26,6 +26,7 @@[m [mpublic class WelcomeView extends JFrame{[m
+        label1.setPreferredSize(new Dimension(400, 200));[m
+        label1.setIcon(new ImageIcon("src/images/Frutas.jpg"));[m
+        nombreField.setPreferredSize(new Dimension(100,100));[m
+[32m+[m[32m       nombreField.setMinimumSize(null);[m
+        ingresarButton.addActionListener(this::actionPerformed);[m
+        //Mensaje Prueba[m
+     }[m
+[36m@@ -35,7 +36,8 @@[m [mpublic class WelcomeView extends JFrame{[m
+ [m
+         public void actionPerformed (ActionEvent e){[m
+             if(e.getSource()==ingresarButton){[m
+[31m-                controller.StructureOpen();[m
+[32m+[m[32m                String input = nombreField.getText();[m
+[32m+[m[32m                controller.StructureOpen(input);[m
+                 dispose();[m
+             }[m
+ [m
