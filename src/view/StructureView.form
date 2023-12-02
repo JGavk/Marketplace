@@ -114,7 +114,9 @@
                   <grid id="c595d" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="3">
                     <constraints border-constraint="Center"/>
                     <properties/>
-                    <border type="none"/>
+                    <border type="line" title="Ingrese producto">
+                      <color color="-2104859"/>
+                    </border>
                     <children>
                       <component id="d9f55" class="javax.swing.JLabel">
                         <constraints/>
@@ -132,7 +134,7 @@
                       <component id="a1e5e" class="javax.swing.JSeparator">
                         <constraints/>
                         <properties>
-                          <preferredSize width="150" height="3"/>
+                          <preferredSize width="140" height="3"/>
                         </properties>
                       </component>
                       <component id="bf7e8" class="javax.swing.JLabel">
