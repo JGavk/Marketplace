@@ -19,18 +19,16 @@ public class Product implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
-
+//-------------------------------------------------------------------------------------------------
     public int getPrice() {
         return price;
     }
     public int getQuantity() {
         return quantity;
     }
-
     public String getItemName() {
         return itemName;
     }

@@ -2,7 +2,6 @@ package view;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 public class StructureView extends JFrame {
 
@@ -12,8 +11,15 @@ public class StructureView extends JFrame {
     private JPanel compradorPanel;
     private JPanel proveedorPanel;
     private JPanel cbtnPanel, tablePanel;
+    private JButton addButton;
+    private JButton deleteButton;
+    private JButton editButton;
+    private JButton buyButton;
+    private JTextField productField;
+    private JTextField textField1;
+    private JPanel inventoryPanel;
 
-    private DefaultTableModel itemTable;
+    private DefaultTableModel itemTable, inventoryTable;
     private String nameField;
 
     public StructureView(){
@@ -34,6 +40,16 @@ public class StructureView extends JFrame {
         tablePanel.add(scrollPane);
         table.setModel(itemTable);
         table.setDefaultEditor(Object.class, null);
+
+
+        inventoryTable = new DefaultTableModel();
+        inventoryTable.addColumn("Product");
+        inventoryTable.addColumn("Quantity");
+        JTable table1 = new JTable(inventoryTable);
+        JScrollPane scrollPane2 = new JScrollPane(table1);
+        inventoryPanel.add(scrollPane2);
+        table1.setModel(inventoryTable);
+        table1.setDefaultEditor(Object.class, null);
 
     }
 
