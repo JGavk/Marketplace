@@ -17,6 +17,8 @@ public class WelcomeController {
 
     public void StructureOpen (String input) {
         sView = new StructureView();
+        StructureController controller = new StructureController();
+        sView.setStructureController(controller);
         sView.nameLabel.setText(input);
     }
 }

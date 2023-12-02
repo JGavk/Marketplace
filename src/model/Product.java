@@ -15,7 +15,7 @@ public class Product implements Serializable {
         this.itemName = itemName;
         this.numberSell = numberSell;
     }
-//Metodo Setter y getter de la cantidad, precio y nombbre del item a comprar para utilizar en archivos .txt
+//Metodo Setter y getter de la cantidad, precio y nombre del item a comprar para utilizar en archivos .txt
     public void setPrice(int price) {
         this.price = price;
     }
