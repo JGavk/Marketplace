@@ -45,6 +45,7 @@ public class StructureView extends JFrame {
         inventoryTable = new DefaultTableModel();
         inventoryTable.addColumn("Product");
         inventoryTable.addColumn("Quantity");
+        inventoryTable.addColumn("Price");
         JTable table1 = new JTable(inventoryTable);
         JScrollPane scrollPane2 = new JScrollPane(table1);
         inventoryPanel.add(scrollPane2);

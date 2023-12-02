@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.StructureView">
   <grid id="27dc6" binding="mainSPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="637" height="508"/>
+      <xy x="20" y="20" width="637" height="510"/>
     </constraints>
     <properties>
       <preferredSize width="800" height="800"/>
@@ -155,7 +155,9 @@
               <grid id="9fdaa" binding="tablePanel" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints border-constraint="Center"/>
                 <properties/>
-                <border type="none" title="Compras"/>
+                <border type="line" title="Tu carrito">
+                  <color color="-2104859"/>
+                </border>
                 <children>
                   <component id="76c02" class="javax.swing.JSeparator">
                     <constraints border-constraint="East"/>
