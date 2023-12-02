@@ -16,11 +16,12 @@ public class Structure implements Serializable {
         productArrayList = new ArrayList<>();
     }
 
+    //Compra del producto y añadir al arreglo de productos
     public void addBought(Product product) throws IOException{
         productArrayList.add(product);
         printBought(product);
     }
-
+    //Creador de txt para archivo de compra de uno o más objetos
     private void printBought(Product product) throws IOException {
         FileWriter dataText = new FileWriter("src/files/sell_" +
                 product.getNumberSell() + ".txt");

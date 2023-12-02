@@ -18,6 +18,7 @@ public class WelcomeView extends JFrame{
     private WelcomeController controller;
 
     public WelcomeView (){
+        //Caracteristicas de la ventana
        setTitle("Product Manager");
        setDefaultCloseOperation(EXIT_ON_CLOSE);
        setSize(500, 600);
@@ -26,20 +27,18 @@ public class WelcomeView extends JFrame{
        setContentPane(mainPanel);
 
        label1.setSize(getWidth(),getHeight());
-       //label1.setPreferredSize(new Dimension(400, 200));
        label1.setIcon(new ImageIcon("src/images/Frutas.jpg"));
-       //nombreLabel.setSize(getWidth()/2,getHeight()/2);
-       //nombreLabel.setIcon(new ImageIcon("src/images/ImagenMercado.jpg"));
        nombreField.setPreferredSize(new Dimension(100,100));
        nombreField.setMinimumSize(null);
        ingresarButton.addActionListener(this::actionPerformed);
 
        //Mensaje Prueba
     }
+    //Setter del primer controlador
         public void setWelcomeController(WelcomeController controller){
             this.controller = controller;
         }
-
+    //Accion del boton ingresar mediante el controlador
         public void actionPerformed (ActionEvent e){
             if(e.getSource()==ingresarButton){
                 String input = nombreField.getText();

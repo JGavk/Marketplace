@@ -143,7 +143,7 @@
                           <text value="Cantidad"/>
                         </properties>
                       </component>
-                      <component id="94ddc" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+                      <component id="94ddc" class="javax.swing.JTextField" binding="quantityField">
                         <constraints/>
                         <properties>
                           <preferredSize width="150" height="30"/>
