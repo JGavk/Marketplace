@@ -13,7 +13,7 @@
       <grid id="b6d4d" binding="entracePanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
         <constraints border-constraint="Center"/>
         <properties/>
-        <border type="bevel-raised"/>
+        <border type="bevel-raised" title="Menu"/>
         <children>
           <component id="e2bfb" class="javax.swing.JLabel" binding="nombreLabel">
             <constraints/>

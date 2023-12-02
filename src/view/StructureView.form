@@ -14,7 +14,7 @@
         <properties>
           <preferredSize width="10" height="50"/>
         </properties>
-        <border type="bevel-lowered"/>
+        <border type="bevel-lowered" title="Cuenta"/>
         <children>
           <component id="7d3d8" class="javax.swing.JLabel">
             <constraints/>
@@ -63,13 +63,13 @@
                 <properties>
                   <preferredSize width="0" height="150"/>
                 </properties>
-                <border type="bevel-raised"/>
+                <border type="bevel-raised" title="Panel de acción"/>
                 <children/>
               </grid>
               <grid id="9fdaa" binding="tablePanel" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints border-constraint="Center"/>
                 <properties/>
-                <border type="none"/>
+                <border type="none" title="Compras"/>
                 <children>
                   <component id="76c02" class="javax.swing.JSeparator">
                     <constraints border-constraint="East"/>
@@ -88,7 +88,7 @@
               <tabbedpane title="Inventario"/>
             </constraints>
             <properties/>
-            <border type="none"/>
+            <border type="none" title="Inventario"/>
             <children/>
           </grid>
           <grid id="84e13" binding="proveedorPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
@@ -98,7 +98,7 @@
             <properties>
               <name value="Proveedor"/>
             </properties>
-            <border type="none"/>
+            <border type="none" title="Agregar Proveedor"/>
             <children/>
           </grid>
         </children>
