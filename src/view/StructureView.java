@@ -30,7 +30,7 @@ public class StructureView extends JFrame {
         setContentPane(mainSPanel);
         setResizable(false);
 
-        //inputPanel.setBackground(Color.CYAN);
+
         itemTable = new DefaultTableModel();
         itemTable.addColumn("Product");
         itemTable.addColumn("Quantity");
