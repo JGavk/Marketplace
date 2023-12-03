@@ -9,7 +9,7 @@ public class Product implements Serializable {
     private String itemName;
     private ArrayList<TxtData> dataArchiveList;
 
-    public Product(int quantity, int price, String itemName){
+    public Product(int quantity, String itemName, int price){
         this.quantity = quantity;
         this.price = price;
         this.itemName = itemName;

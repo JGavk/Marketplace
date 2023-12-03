@@ -60,11 +60,7 @@ public class StructureView extends JFrame {
 
     private void actionPerformed(ActionEvent e) {   //Agregar primer listener al borton de acción Añadir, recolectando el texto de los textFields
         if(e.getSource()==addButton){
-            int input = Integer.parseInt(quantityField.getText());
-            String itemName = productField.getText();
-            System.out.println(itemName);   //Sout's de prueba
-            System.out.println(input);
-            controller.addItemToCart();
+            controller.addItemToCart(quantityField, productField);
         }
 
     }
