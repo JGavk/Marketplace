@@ -34,9 +34,9 @@ public class Product implements Serializable {
         return itemName;
     }
 
-    public int getNumberSell() {
+ /*   public int getNumberSell() {
         return numberSell;
-    }
+    } */
 
     public String listToString(ArrayList<Product> list) {
         StringBuilder stringBuilder = new StringBuilder();

@@ -20,6 +20,7 @@ public class Structure implements Serializable {
 
     //Compra del producto y añadir al arreglo de productos
     public void addBought(Product product) {
+
         productArrayList.add(product);
         System.out.println(productArrayList); //Probar si el arreglo sirve
         //printBought(product);
