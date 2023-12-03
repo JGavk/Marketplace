@@ -46,5 +46,24 @@ public class Product implements Serializable {
         return dataArchiveList;
     }
 
+    public String listToString(ArrayList<Product> list) {
+        StringBuilder stringBuilder = new StringBuilder();
+        list.forEach(obj -> {
+            stringBuilder.append(obj).append(", ");
+        });
+
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String toString() {
+        //String nameString = listToString(getItemName());
+        //String quantityString = listToString(getQuantity());
+
+        return
+                        "Item name: " + getItemName() + '\n' +
+                        "Quantity: " + getQuantity()+ '\n';
+    }
+
 
 }
