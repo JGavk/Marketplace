@@ -5,6 +5,8 @@ import view.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class StructureController {
@@ -14,28 +16,38 @@ public class StructureController {
     public StructureController(StructureView sView){
         this.sView = sView;
         this.structure = new Structure();
+
+        sView.addBuyButtonListener(new buyButtonListener());
     }
 
-//Añade los datos al arreglo producto
-    public void addItemToCart(JTextField quantityField, JTextField productField) {
-        int quantity = Integer.parseInt(quantityField.getText());
+
+    public void addItemToCart(JTextField quantityField, JTextField productField, DefaultTableModel table) {
+
+        //
+        int quantity = Integer.parseInt(quantityField.getText()); //Se necesita un cambio para unirlo a la clase Producto
         String itemName = productField.getText();
-        this.product = new Product(quantity, itemName);
-        structure.addBought(product);
+
+        // Verificar si en el txtField nombre si hay un producto con esa key en el hashmap
+        if (structure.addBought(itemName)){
+            System.out.println("Product added to shopping cart");
+            Product product = structure.searchProduct(itemName);
+            table.addRow(new Object[]{product.getItemName(), quantity, product.getPrice()*quantity
+            });
+        } else {
+            System.out.println("Error, no agregado");
+        }
         System.out.println(itemName);  // Souts de prueba
         System.out.println(quantity);
-        System.out.println(product);
 
     }
 
-//Añade la fila a la tabla con objeto producto del arreglo de productos
-    public void updateItemsFromTable(DefaultTableModel table) {
-        table.addRow(new Object[]{product.getItemName(), product.getQuantity()
-        });
-    }
-//Añade el archivo.txt
-    public void printTxt() throws IOException {
-        structure.printBought();
 
+    class buyButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Quantity field: " + sView.getQuantityField().getText());
+            structure.printBought(sView.getQuantityField().getText(), Integer.parseInt(sView.getQuantityField().getText()));
+        }
     }
 }
