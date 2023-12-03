@@ -4,9 +4,7 @@ import controller.StructureController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
@@ -60,7 +58,10 @@ public class StructureView extends JFrame {
         table1.setModel(inventoryTable);
         table1.setDefaultEditor(Object.class, null);
         addButton.addActionListener(this::actionPerformed);
-        buyButton.addActionListener(this::actionDone);
+        //buyButton.addActionListener(this::actionPerformed);
+        buyButton.setEnabled(false);
+
+
         quantityField.addKeyListener(new KeyListener(){
             @Override
             public void keyTyped(KeyEvent e) {
@@ -80,24 +81,19 @@ public class StructureView extends JFrame {
             }
         });
 
-
     }
 
 
-    private void actionDone(ActionEvent actionEvent)  {
-        try {
-            controller.printTxt();
-        } catch (Exception e) {
-            System.out.println("ERROR FILE");
-        }
+    private void actionDone(ActionEvent l)  {
+
     }
 
     private void actionPerformed(ActionEvent e) {   //Agregar primer listener al borton de acción Añadir, recolectando el texto de los textFields
-        if(e.getSource()==addButton){
-            controller.addItemToCart(quantityField, productField);
-            quantityField.setText("");
+        if(e.getSource()==addButton) {
+            controller.addItemToCart(quantityField, productField, itemTable);
+            //quantityField.setText("");
             productField.setText("");
-            updateItemTable(itemTable);
+            buyButton.setEnabled(true);
         }
 
     }
@@ -106,7 +102,13 @@ public class StructureView extends JFrame {
         this.controller = controller;
     }
 
-    public void updateItemTable(DefaultTableModel itemTable) {
-        controller.updateItemsFromTable(itemTable);
+    public JTextField getQuantityField() {
+        return quantityField;
     }
+
+    public void addBuyButtonListener(ActionListener listener){
+        buyButton.addActionListener(listener);
+    }
+
+
 }
