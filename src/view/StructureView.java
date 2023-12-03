@@ -1,12 +1,14 @@
 package view;
 
 import controller.StructureController;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.awt.event.KeyListener;
+import java.io.IOException;
 
 public class StructureView extends JFrame {
     private StructureController controller;
@@ -81,7 +83,7 @@ public class StructureView extends JFrame {
 
     }
 
-//Creacion de archivo de texto con los datos de la tabla mediante el controlador
+
     private void actionDone(ActionEvent actionEvent)  {
         try {
             controller.printTxt();
@@ -89,7 +91,7 @@ public class StructureView extends JFrame {
             System.out.println("ERROR FILE");
         }
     }
-//Lleva los datos de los textField's al controlador para ser utilizados en la actualización de la itemTable
+
     private void actionPerformed(ActionEvent e) {   //Agregar primer listener al borton de acción Añadir, recolectando el texto de los textFields
         if(e.getSource()==addButton){
             controller.addItemToCart(quantityField, productField);
@@ -103,7 +105,7 @@ public class StructureView extends JFrame {
     public void setStructureController(StructureController controller) {
         this.controller = controller;
     }
-//Actualiza la tabla con los datos de los textFields
+
     public void updateItemTable(DefaultTableModel itemTable) {
         controller.updateItemsFromTable(itemTable);
     }
