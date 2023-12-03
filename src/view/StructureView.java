@@ -5,6 +5,10 @@ import controller.StructureController;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyListener;
+import java.io.IOException;
 
 public class StructureView extends JFrame {
     private StructureController controller;
@@ -56,16 +60,53 @@ public class StructureView extends JFrame {
         table1.setModel(inventoryTable);
         table1.setDefaultEditor(Object.class, null);
         addButton.addActionListener(this::actionPerformed);
+        buyButton.addActionListener(this::actionDone);
+        quantityField.addKeyListener(new KeyListener(){
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c)) {
+                    e.consume();
+                }
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                //Metodos abstractos para que solo acepte numeros
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                //Metodos abstractos para que solo acepte numeros
+            }
+        });
+
+
+    }
+
+
+    private void actionDone(ActionEvent actionEvent)  {
+        try {
+            controller.printTxt();
+        } catch (Exception e) {
+            System.out.println("ERROR FILE");
+        }
     }
 
     private void actionPerformed(ActionEvent e) {   //Agregar primer listener al borton de acción Añadir, recolectando el texto de los textFields
         if(e.getSource()==addButton){
             controller.addItemToCart(quantityField, productField);
+            quantityField.setText("");
+            productField.setText("");
+            updateItemTable(itemTable);
         }
 
     }
     //Setter del segundo Controlador
     public void setStructureController(StructureController controller) {
         this.controller = controller;
+    }
+
+    public void updateItemTable(DefaultTableModel itemTable) {
+        controller.updateItemsFromTable(itemTable);
     }
 }

@@ -9,8 +9,5 @@ public class Main {
         WelcomeView view= new WelcomeView();
         WelcomeController controller = new WelcomeController(view);
         view.setWelcomeController(controller);
-
-
-
     }
 }

@@ -1,16 +1,18 @@
 package logic;
 import model.*;
-import view.StructureView;
+
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Structure implements Serializable {
     public static final long serialVersionUID = 1L;
     private ArrayList<Product> productArrayList;
+
 
     public Structure(){
         productArrayList = new ArrayList<>();
@@ -22,16 +24,22 @@ public class Structure implements Serializable {
         System.out.println(productArrayList); //Probar si el arreglo sirve
         //printBought(product);
     }
+
     //Creador de txt para archivo de compra de uno o más objetos
-    private void printBought(Product product) throws IOException {
+    public void printBought() throws IOException {
+
+        UUID transactionNum = UUID.randomUUID();
         FileWriter dataText = new FileWriter("src/files/sell_" +
-                product.getNumberSell() + ".txt");
+                transactionNum + ".txt");
         PrintWriter pw = new PrintWriter(dataText);
-        pw.println("Transaction number  : " + product.getNumberSell());
-        pw.println("Item Name           : " + product.getItemName());
-        pw.println("Quantity            : " + product.getQuantity());
-        pw.println("Price               : " + product.getPrice());
-        ArrayList<TxtData> dataArrayList = product.getDataArchiveList();
+        pw.println("Transaction number  : " + transactionNum);
+        pw.println("Item             |      Amount              |    Price  " );
+
+        productArrayList.forEach(obj -> {
+            pw.println(obj.getItemName() +  "                    "  + obj.getQuantity()+ "                    "+"0");
+        });
+
+
         try {
             if (dataText != null)
                 dataText.close();
