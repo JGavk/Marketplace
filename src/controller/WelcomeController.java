@@ -11,8 +11,7 @@ public class WelcomeController {
     private WelcomeView wView;
 
     public WelcomeController(){
-        this.wView=wView;
-        this.sView=sView;
+
     }
     //Apertura de la ventana de structura y agregarle el segundo controlador
     public void StructureOpen (String input) {
