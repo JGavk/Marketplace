@@ -12,7 +12,7 @@ public class Product implements Serializable {
         this.itemName = itemName;
         this.price = price;
     }
-//Metodo Setter y getter de la cantidad, precio y nombre del item a comprar para utilizar en archivos .txt
+    //Metodo Setter y getter de la cantidad, precio y nombre del item a comprar para utilizar en archivos .txt
     public void setPrice(int price) {
         this.price = price;
     }
@@ -20,7 +20,7 @@ public class Product implements Serializable {
         this.itemName = itemName;
     }
 
-//-------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------
     public double getPrice() {
         return price;
     }
@@ -43,7 +43,7 @@ public class Product implements Serializable {
         //String quantityString = listToString(getQuantity());
 
         return
-                        "Item name: " + getItemName() + '\n' +
+                "Item name: " + getItemName() + '\n' +
                         "Price: " + getPrice()+ '\n';
     }
 
