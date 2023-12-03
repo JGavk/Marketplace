@@ -18,7 +18,7 @@ public class StructureController {
 
 //Añade los datos al arreglo producto
     public void addItemToCart(JTextField quantityField, JTextField productField) {
-        int quantity = Integer.parseInt(quantityField.getText()); //Se necesita un cambio para unirlo a la clase Producto
+        int quantity = Integer.parseInt(quantityField.getText());
         String itemName = productField.getText();
         this.product = new Product(quantity, itemName);
         structure.addBought(product);
@@ -27,6 +27,7 @@ public class StructureController {
         System.out.println(product);
 
     }
+
 //Añade la fila a la tabla con objeto producto del arreglo de productos
     public void updateItemsFromTable(DefaultTableModel table) {
         table.addRow(new Object[]{product.getItemName(), product.getQuantity()
