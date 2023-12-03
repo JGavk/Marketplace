@@ -8,15 +8,15 @@ import view.WelcomeView;
 public class WelcomeController {
     public StructureView sView;
 
-    private WelcomeView wView;
+    private WelcomeView view;
 
-    public WelcomeController(){
-
+    public WelcomeController(WelcomeView view){
+        this.view = view;
     }
     //Apertura de la ventana de structura y agregarle el segundo controlador
     public void StructureOpen (String input) {
         sView = new StructureView();
-        StructureController controller = new StructureController();
+        StructureController controller = new StructureController(sView);
         sView.setStructureController(controller);
         sView.nameLabel.setText(input);
     }

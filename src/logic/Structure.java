@@ -17,9 +17,10 @@ public class Structure implements Serializable {
     }
 
     //Compra del producto y añadir al arreglo de productos
-    public void addBought(Product product) throws IOException{
+    public void addBought(Product product) {
         productArrayList.add(product);
-        printBought(product);
+        System.out.println(productArrayList); //Probar si el arreglo sirve
+        //printBought(product);
     }
     //Creador de txt para archivo de compra de uno o más objetos
     private void printBought(Product product) throws IOException {
