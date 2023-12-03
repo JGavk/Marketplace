@@ -31,7 +31,6 @@ public class Structure implements Serializable {
     }
 
     //Compra del producto y añadir al arreglo de productos
-<<<<<<< HEAD
     public boolean addBought(String itemName) {
 
         Product product = searchProduct(itemName);
@@ -59,13 +58,6 @@ public class Structure implements Serializable {
             System.out.println("No hay stock del producto");
             return null;
         }
-=======
-    public void addBought(Product product) {
-
-        productArrayList.add(product);
-        System.out.println(productArrayList); //Probar si el arreglo sirve
-        //printBought(product);
->>>>>>> 1a06ab3b257b30eed3b7f385b83d5d1d73b04394
     }
 
     //Creador de txt para archivo de compra de uno o más objetos
