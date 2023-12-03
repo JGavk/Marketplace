@@ -20,6 +20,7 @@ public class Structure implements Serializable {
         productArrayList = new ArrayList<>();
         inventoryItems = new HashMap<>();
 
+        // Productos para ensayo
         Product tomate = new Product("tomate", 1000.0);
         Product cebolla = new Product("cebolla", 1200.0);
         Product arroz = new Product("arroz", 2000.0);
@@ -33,7 +34,7 @@ public class Structure implements Serializable {
     public boolean addBought(String itemName) {
 
         Product product = searchProduct(itemName);
-        // Hay que verficar
+        // Verifica si se agregó el producto al carrito
         if (product != null){
             System.out.println("Se encontró el producto");
             productArrayList.add(inventoryItems.get(itemName));
@@ -49,6 +50,7 @@ public class Structure implements Serializable {
 
     public Product searchProduct(String itemName){
         Product producto = inventoryItems.get(itemName);
+        // verifica si existe el producto
         if (producto != null){
             System.out.println("Se encontró el producto");
             return producto;
@@ -59,24 +61,27 @@ public class Structure implements Serializable {
     }
 
     //Creador de txt para archivo de compra de uno o más objetos
-    public void printBought() throws IOException {
-
-        UUID transactionNum = UUID.randomUUID();
-        FileWriter dataText = new FileWriter("src/files/sell_" +
-                transactionNum + ".txt");
-        PrintWriter pw = new PrintWriter(dataText);
-        pw.println("Transaction number  : " + transactionNum);
-        pw.println("Item             |      Amount              |    Price  " );
-
-        productArrayList.forEach(obj -> {
-            pw.println(obj.getItemName() +  "                    "  + obj.getQuantity()+ "                    "+"0");
-        });
-
+    public void printBought(String quantity, int quantityInt)  {
 
         try {
-            if (dataText != null)
+            UUID transactionNum = UUID.randomUUID();
+            FileWriter dataText = new FileWriter("src/files/sell_" +
+                    transactionNum + ".txt");
+            PrintWriter pw = new PrintWriter(dataText);
+            pw.println("Transaction number  : " + transactionNum);
+            pw.println("Item             |      Amount              |    Price  " );
+
+            productArrayList.forEach(obj -> {
+                pw.println(obj.getItemName() +  "                    " + quantity + "                    " + quantityInt*obj.getPrice());
+            });
+            if (dataText != null){
                 dataText.close();
+            }else {
+                System.out.println("hola");
+            }
+
         } catch (IOException e2) {
+            System.out.println("si es este");
             e2.printStackTrace();
         }
     }
