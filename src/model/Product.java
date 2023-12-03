@@ -28,13 +28,6 @@ public class Product implements Serializable {
         return itemName;
     }
 
-<<<<<<< HEAD
-=======
- /*   public int getNumberSell() {
-        return numberSell;
-    } */
-
->>>>>>> 1a06ab3b257b30eed3b7f385b83d5d1d73b04394
     public String listToString(ArrayList<Product> list) {
         StringBuilder stringBuilder = new StringBuilder();
         list.forEach(obj -> {
@@ -46,10 +39,13 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
+        //String nameString = listToString(getItemName());
+        //String quantityString = listToString(getQuantity());
 
         return
                         "Item name: " + getItemName() + '\n' +
                         "Price: " + getPrice()+ '\n';
     }
+
 
 }
