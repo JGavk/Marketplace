@@ -18,17 +18,24 @@ public class StructureController {
 
 
     public void addItemToCart(JTextField quantityField, JTextField productField) {
+
+        //
         int quantity = Integer.parseInt(quantityField.getText()); //Se necesita un cambio para unirlo a la clase Producto
         String itemName = productField.getText();
-        this.product = new Product(quantity, itemName);
-        structure.addBought(product);
+
+        // Verificar si en el txtField nombre si hay un producto con esa key en el hashmap
+        if (structure.addBought(itemName)){
+            System.out.println("Product added to shopping cart");
+        } else {
+            System.out.println("Error, no agregado");
+        }
         System.out.println(itemName);  // Souts de prueba
         System.out.println(quantity);
-        System.out.println(product);
 
     }
 
     public void updateItemsFromTable(DefaultTableModel table) {
+
         table.addRow(new Object[]{product.getItemName(), product.getQuantity()
         });
     }

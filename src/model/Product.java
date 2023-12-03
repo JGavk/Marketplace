@@ -5,37 +5,27 @@ import java.util.ArrayList;
 
 public class Product implements Serializable {
     public static final long serialVersionUID = 1L;
-    private int quantity, price, numberSell;
+    private double price;
     private String itemName;
 
-    public Product(int quantity, String itemName){
-        this.quantity = quantity;
+    public Product(String itemName, double price){
         this.itemName = itemName;
+        this.price = price;
     }
 //Metodo Setter y getter de la cantidad, precio y nombre del item a comprar para utilizar en archivos .txt
     public void setPrice(int price) {
         this.price = price;
-    }
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
 
 //-------------------------------------------------------------------------------------------------
-    public int getPrice() {
+    public double getPrice() {
         return price;
-    }
-    public int getQuantity() {
-        return quantity;
     }
     public String getItemName() {
         return itemName;
-    }
-
-    public int getNumberSell() {
-        return numberSell;
     }
 
     public String listToString(ArrayList<Product> list) {
@@ -54,7 +44,7 @@ public class Product implements Serializable {
 
         return
                         "Item name: " + getItemName() + '\n' +
-                        "Quantity: " + getQuantity()+ '\n';
+                        "Price: " + getPrice()+ '\n';
     }
 
 
