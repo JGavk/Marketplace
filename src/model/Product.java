@@ -49,13 +49,10 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        //String nameString = listToString(getItemName());
-        //String quantityString = listToString(getQuantity());
 
         return
                         "Item name: " + getItemName() + '\n' +
                         "Quantity: " + getQuantity()+ '\n';
     }
-
 
 }
