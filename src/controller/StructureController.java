@@ -48,6 +48,8 @@ public class StructureController {
         public void actionPerformed(ActionEvent e) {
             System.out.println("Quantity field: " + sView.getQuantityField().getText());
             structure.printBought();
+            structure.clearItemArray();
+
         }
     }
 }

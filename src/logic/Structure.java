@@ -49,7 +49,13 @@ public class Structure implements Serializable {
 
 
     }
-
+    public ArrayList<Product> getItemArray(){
+        System.out.println(productArrayList);
+        return productArrayList;
+    }
+    public void clearItemArray(){
+        productArrayList.clear();
+    }
     public Product searchProduct(String itemName){
         Product producto = inventoryItems.get(itemName);
         // verifica si existe el producto
