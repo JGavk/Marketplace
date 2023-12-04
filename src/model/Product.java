@@ -7,10 +7,11 @@ public class Product implements Serializable {
     public static final long serialVersionUID = 1L;
     private double price;
     private String itemName;
-
-    public Product(String itemName, double price){
+    private int cantidad;
+    public Product(String itemName, int cantidad, double price){
         this.itemName = itemName;
         this.price = price;
+        this.cantidad = cantidad;
     }
     //Metodo Setter y getter de la cantidad, precio y nombre del item a comprar para utilizar en archivos .txt
     public void setPrice(int price) {
@@ -27,7 +28,9 @@ public class Product implements Serializable {
     public String getItemName() {
         return itemName;
     }
-
+    public int getCantidad(){
+        return cantidad;
+    }
     public String listToString(ArrayList<Product> list) {
         StringBuilder stringBuilder = new StringBuilder();
         list.forEach(obj -> {

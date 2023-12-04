@@ -28,11 +28,11 @@ public class StructureController {
         String itemName = productField.getText();
 
         // Verificar si en el txtField nombre si hay un producto con esa key en el hashmap
-        if (structure.addBought(itemName)){
+        Product product = structure.searchProduct(itemName);
+        if (product != null){
+            structure.addBought(itemName, quantity ,product.getPrice()*quantity);
             System.out.println("Product added to shopping cart");
-            Product product = structure.searchProduct(itemName);
-            table.addRow(new Object[]{product.getItemName(), quantity, product.getPrice()*quantity
-            });
+            table.addRow(new Object[]{product.getItemName(), quantity, product.getPrice()*quantity});
         } else {
             System.out.println("Error, no agregado");
         }
@@ -47,7 +47,7 @@ public class StructureController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Quantity field: " + sView.getQuantityField().getText());
-            structure.printBought(sView.getQuantityField().getText(), Integer.parseInt(sView.getQuantityField().getText()));
+            structure.printBought();
         }
     }
 }

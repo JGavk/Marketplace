@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+
+
 public class Structure implements Serializable {
     public static final long serialVersionUID = 1L;
     private ArrayList<Product> productArrayList; // muestra los datos en la patalla
@@ -20,10 +22,10 @@ public class Structure implements Serializable {
         productArrayList = new ArrayList<>();
         inventoryItems = new HashMap<>();
 
-        // Productos para ensayo
-        Product tomate = new Product("tomate", 1000.0);
-        Product cebolla = new Product("cebolla", 1200.0);
-        Product arroz = new Product("arroz", 2000.0);
+        // Productos para ensayo *ver json inventario"
+        Product tomate = new Product("tomate", 0, 1000.0);
+        Product cebolla = new Product("cebolla", 0, 1200.0);
+        Product arroz = new Product("arroz", 0, 2000.0);
 
         inventoryItems.put(tomate.getItemName(), tomate);
         inventoryItems.put(cebolla.getItemName(), cebolla);
@@ -31,13 +33,13 @@ public class Structure implements Serializable {
     }
 
     //Compra del producto y añadir al arreglo de productos
-    public boolean addBought(String itemName) {
+    public boolean addBought(String itemName, int amount, double price) {
 
         Product product = searchProduct(itemName);
         // Verifica si se agregó el producto al carrito
         if (product != null){
             System.out.println("Se encontró el producto");
-            productArrayList.add(inventoryItems.get(itemName));
+            productArrayList.add(new Product(inventoryItems.get(itemName).getItemName(), amount, price));
             System.out.println(productArrayList); // Probar si el arreglo sirve
             return true;
         } else {
@@ -61,7 +63,7 @@ public class Structure implements Serializable {
     }
 
     //Creador de txt para archivo de compra de uno o más objetos
-    public void printBought(String quantity, int quantityInt)  {
+    public void printBought()  {
 
         try {
             UUID transactionNum = UUID.randomUUID();
@@ -72,7 +74,7 @@ public class Structure implements Serializable {
             pw.println("Item             |      Amount              |    Price  " );
 
             productArrayList.forEach(obj -> {
-                pw.println(obj.getItemName() +  "                    " + quantity + "                    " + quantityInt*obj.getPrice());
+                pw.println(obj.getItemName() +  "                    " + obj.getCantidad() + "                    " + obj.getPrice());
             });
             if (dataText != null){
                 dataText.close();
