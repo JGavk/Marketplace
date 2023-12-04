@@ -33,21 +33,27 @@ public class Structure implements Serializable {
     }
 
     //Compra del producto y añadir al arreglo de productos
-    public boolean addBought(String itemName, int amount, double price) {
+    public void addBought(String itemName, int amount, double price) {
 
         Product product = searchProduct(itemName);
         // Verifica si se agregó el producto al carrito
         if (product != null){
-            System.out.println("Se encontró el producto");
             productArrayList.add(new Product(inventoryItems.get(itemName).getItemName(), amount, price));
             System.out.println(productArrayList); // Probar si el arreglo sirve
-            return true;
         } else {
             System.out.println("No hay stock del producto");
-            return false;
         }
 
 
+    }
+    public void popProductArray(String itemName){
+        Product product = searchProduct(itemName);
+        if (product != null){
+            productArrayList.remove(product);
+            System.out.println(productArrayList);
+        }else {
+            System.out.println("No se pudo eliminar");
+        }
     }
     public ArrayList<Product> getItemArray(){
         System.out.println(productArrayList);

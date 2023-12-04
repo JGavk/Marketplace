@@ -25,6 +25,7 @@ public class StructureView extends JFrame {
     private JPanel inventoryPanel;
 
     private DefaultTableModel itemTable, inventoryTable;
+    private JTable table;
     private String nameField;
 
     public StructureView(){
@@ -41,7 +42,7 @@ public class StructureView extends JFrame {
         itemTable.addColumn("Product");
         itemTable.addColumn("Quantity");
         itemTable.addColumn("Total Price");
-        JTable table = new JTable(itemTable);
+        table = new JTable(itemTable);
         JScrollPane scrollPane = new JScrollPane(table);
         tablePanel.add(scrollPane);
         table.setModel(itemTable);
@@ -60,6 +61,19 @@ public class StructureView extends JFrame {
         addButton.addActionListener(this::actionPerformed);
         //buyButton.addActionListener(this::actionPerformed);
         buyButton.setEnabled(false);
+
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                int row = table.rowAtPoint(e.getPoint());
+                // Obtener el objeto correspondiente del modelo
+                if (row >= 0) {
+                    Object rowData = itemTable.getDataVector().elementAt(row);
+                    System.out.println("Objeto seleccionado: " + rowData);
+                }
+            }
+        });
 
 
         quantityField.addKeyListener(new KeyListener(){
@@ -80,13 +94,8 @@ public class StructureView extends JFrame {
                 //Metodos abstractos para que solo acepte numeros
             }
         });
-
     }
 
-
-    private void actionDone(ActionEvent l)  {
-
-    }
 
     private void actionPerformed(ActionEvent e) {   //Agregar primer listener al borton de acción Añadir, recolectando el texto de los textFields
         if(e.getSource()==addButton) {
@@ -109,6 +118,4 @@ public class StructureView extends JFrame {
     public void addBuyButtonListener(ActionListener listener){
         buyButton.addActionListener(listener);
     }
-
-
 }
