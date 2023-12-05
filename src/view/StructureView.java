@@ -83,22 +83,15 @@ public class StructureView extends JFrame {
         });
 
 
-        quantityField.addKeyListener(new KeyListener(){
+
+
+        quantityField.addKeyListener(new KeyAdapter(){
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
                 if (!Character.isDigit(c)) {
                     e.consume();
                 }
-            }
-            @Override
-            public void keyPressed(KeyEvent e) {
-                //Metodos abstractos para que solo acepte numeros
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                //Metodos abstractos para que solo acepte numeros
             }
         });
     }

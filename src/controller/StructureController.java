@@ -23,6 +23,7 @@ public class StructureController {
     public void addItemToCart(JTextField quantityField, JTextField productField, DefaultTableModel table) {
 
         //
+        try{
         int quantity = Integer.parseInt(quantityField.getText()); //Se necesita un cambio para unirlo a la clase Producto
         String itemName = productField.getText();
 
@@ -37,6 +38,9 @@ public class StructureController {
         }
         System.out.println(itemName);  // Souts de prueba
         System.out.println(quantity);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Quantity must be a valid integer", "Input Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void deleteAThing(String selectedName) {
