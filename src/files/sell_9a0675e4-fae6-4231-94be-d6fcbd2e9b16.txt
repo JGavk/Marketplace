@@ -1,0 +1,4 @@
+Transaction number  : 9a0675e4-fae6-4231-94be-d6fcbd2e9b16
+Item             |      Amount              |    Price  
+arroz                    100                    200000.0
+tomate                    1000                    1000000.0

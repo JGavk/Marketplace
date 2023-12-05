@@ -7,7 +7,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class StructureController {
     public StructureView sView;
@@ -38,7 +37,11 @@ public class StructureController {
         }
         System.out.println(itemName);  // Souts de prueba
         System.out.println(quantity);
+    }
 
+    public void deleteAThing(String selectedName) {
+        structure.popProductArray(selectedName);
+        sView.deleteSelectedItem();
     }
 
 
@@ -49,6 +52,7 @@ public class StructureController {
             System.out.println("Quantity field: " + sView.getQuantityField().getText());
             structure.printBought();
             structure.clearItemArray();
+            sView.refreshTableAfterBuy();
 
         }
     }

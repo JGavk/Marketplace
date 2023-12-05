@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
-
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class Structure implements Serializable {
@@ -46,11 +46,15 @@ public class Structure implements Serializable {
 
 
     }
+    public void popItem(){
+
+    }
     public void popProductArray(String itemName){
-        Product product = searchProduct(itemName);
+        Product product = searchCarProduct(itemName);
         if (product != null){
-            productArrayList.remove(product);
+            boolean removed = productArrayList.remove(product);
             System.out.println(productArrayList);
+            System.out.println("removed   " + removed);
         }else {
             System.out.println("No se pudo eliminar");
         }
@@ -71,6 +75,21 @@ public class Structure implements Serializable {
         } else {
             System.out.println("No hay stock del producto");
             return null;
+        }
+    }
+//Metodo de deleteo item en arreglo
+    public Product searchCarProduct(String itemName){
+        ArrayList<Product> exist = new ArrayList<>();
+        productArrayList.forEach(obj -> {
+            if ((obj.getItemName()).equals(itemName)) {
+                exist.add(obj);
+            }
+        });
+
+        if (!exist.isEmpty()) {
+            return exist.get(0);
+        } else {
+            return  null;
         }
     }
 

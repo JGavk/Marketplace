@@ -26,8 +26,8 @@ public class StructureView extends JFrame {
 
     private DefaultTableModel itemTable, inventoryTable;
     private JTable table;
-    private String nameField;
-
+    private String nameField, selectedName;
+    private int selectedRow;
     public StructureView(){
         //Caracteristicas de la ventana
         setSize(700,700);
@@ -61,15 +61,18 @@ public class StructureView extends JFrame {
         addButton.addActionListener(this::actionPerformed);
         //buyButton.addActionListener(this::actionPerformed);
         buyButton.setEnabled(false);
-
+        deleteButton.addActionListener(this::actionDone);
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 int row = table.rowAtPoint(e.getPoint());
+                selectedRow = table.getSelectedRow();
                 // Obtener el objeto correspondiente del modelo
                 if (row >= 0) {
                     Object rowData = itemTable.getDataVector().elementAt(row);
+                    selectedName = (String) table.getValueAt(selectedRow,0);
+                    System.out.println(selectedName);
                     System.out.println("Objeto seleccionado: " + rowData);
                 }
             }
@@ -96,6 +99,18 @@ public class StructureView extends JFrame {
         });
     }
 
+    private void actionDone(ActionEvent e2) {
+        if(e2.getSource()==deleteButton){
+            controller.deleteAThing(this.selectedName);
+        }
+    }
+    public void deleteSelectedItem(){
+        itemTable.removeRow(selectedRow);
+    }
+
+    public void refreshTableAfterBuy(){
+        itemTable.setRowCount(0);
+    }
 
     private void actionPerformed(ActionEvent e) {   //Agregar primer listener al borton de acción Añadir, recolectando el texto de los textFields
         if(e.getSource()==addButton) {

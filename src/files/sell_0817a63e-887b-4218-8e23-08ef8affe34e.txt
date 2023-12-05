@@ -1,0 +1,4 @@
+Transaction number  : 0817a63e-887b-4218-8e23-08ef8affe34e
+Item             |      Amount              |    Price  
+cebolla                    500                    600000.0
+tomate                    3000                    3000000.0
