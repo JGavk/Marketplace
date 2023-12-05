@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class WelcomeView extends JFrame{
     private JPanel mainPanel;
@@ -42,8 +43,14 @@ public class WelcomeView extends JFrame{
         public void actionPerformed (ActionEvent e){
             if(e.getSource()==ingresarButton){
                 String input = nombreField.getText();
-                controller.StructureOpen(input);
-                dispose();
+
+                if (input.isEmpty() || !input.matches("^[a-zA-Z]+$")) {
+                    JOptionPane.showMessageDialog(this, "Por favor, ingresa un nombre válido (solo letras).");
+                    nombreField.setText("");
+                } else {
+                    controller.StructureOpen(input);
+                    dispose();
+                }
             }
 
         }
