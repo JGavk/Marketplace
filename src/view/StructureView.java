@@ -100,10 +100,14 @@ public class StructureView extends JFrame {
     }
 
     private void actionDone(ActionEvent e2) {
-        if(e2.getSource()==deleteButton){
+        if (this.selectedName != null) {
             controller.deleteAThing(this.selectedName);
+            this.selectedName = null;
+        } else {
+            JOptionPane.showMessageDialog(null, "Select something!! ", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     public void deleteSelectedItem(){
         itemTable.removeRow(selectedRow);
     }

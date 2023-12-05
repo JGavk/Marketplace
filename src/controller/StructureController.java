@@ -42,6 +42,7 @@ public class StructureController {
     public void deleteAThing(String selectedName) {
         structure.popProductArray(selectedName);
         sView.deleteSelectedItem();
+
     }
 
 
