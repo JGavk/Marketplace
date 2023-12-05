@@ -14,11 +14,15 @@ public class Product implements Serializable {
         this.cantidad = cantidad;
     }
     //Metodo Setter y getter de la cantidad, precio y nombre del item a comprar para utilizar en archivos .txt
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     //-------------------------------------------------------------------------------------------------

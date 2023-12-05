@@ -19,7 +19,7 @@ public class StructureController {
         sView.addBuyButtonListener(new buyButtonListener());
     }
 
-
+//Metodo de añadir item al arreglo
     public void addItemToCart(JTextField quantityField, JTextField productField, DefaultTableModel table) {
 
         //
@@ -44,8 +44,18 @@ public class StructureController {
         sView.deleteSelectedItem();
 
     }
+//Metodo update controlado
+    public void updateThing(String selectedName, int intValue) {
+        Product product = structure.getProductByName(selectedName); //Toma un producto y compara para saber su existencia, envia datos
+        if (product != null) {
+            structure.updateProduct(selectedName, intValue); //Envia datos de cambio
+            System.out.println("hola");
+        } else {
+            System.out.println("Product not found");
+        }
+    }
 
-
+//Metodo de compra
     class buyButtonListener implements ActionListener {
 
         @Override

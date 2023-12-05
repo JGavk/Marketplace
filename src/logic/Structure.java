@@ -45,9 +45,7 @@ public class Structure implements Serializable {
 
 
     }
-    public void popItem(){
-
-    }
+    //Metodo para remover un item del arreglo
     public void popProductArray(String itemName){
         Product product = searchCarProduct(itemName);
         if (product != null){
@@ -58,13 +56,31 @@ public class Structure implements Serializable {
             System.out.println("No se pudo eliminar");
         }
     }
+
+//Metodo de update item del arreglo dando nueva cantidad y precio
+    public void updateProduct(String itemName, int quantity) {
+        for (Product product : productArrayList) {
+            if (product != null && product.getItemName().equals(itemName)) {
+                double price = inventoryItems.get(itemName).getPrice();
+                product.setCantidad(quantity);
+                product.setPrice(price * quantity);
+                System.out.println("que tal");
+                System.out.println(productArrayList);
+                break;
+            }
+        }
+    }
+//getter del arreglo para pruebas
     public ArrayList<Product> getItemArray(){
         System.out.println(productArrayList);
         return productArrayList;
     }
+    //Metodo de limpieza
     public void clearItemArray(){
         productArrayList.clear();
     }
+
+    //Metodo de busqueda en HashMap
     public Product searchProduct(String itemName){
         Product producto = inventoryItems.get(itemName);
         // verifica si existe el producto
@@ -90,6 +106,16 @@ public class Structure implements Serializable {
         } else {
             return  null;
         }
+    }
+
+    //Busqueda en el arreglo
+    public Product getProductByName(String name) {
+        for (Product product : productArrayList) {
+            if (product != null && product.getItemName().equals(name)) {
+                return product;
+            }
+        }
+        return null;
     }
 
     //Creador de txt para archivo de compra de uno o más objetos

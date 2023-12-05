@@ -27,7 +27,7 @@ public class StructureView extends JFrame {
     private DefaultTableModel itemTable, inventoryTable;
     private JTable table;
     private String nameField, selectedName;
-    private int selectedRow;
+    private int selectedRow, selectedQ;
     public StructureView(){
         //Caracteristicas de la ventana
         setSize(700,700);
@@ -62,17 +62,21 @@ public class StructureView extends JFrame {
         //buyButton.addActionListener(this::actionPerformed);
         buyButton.setEnabled(false);
         deleteButton.addActionListener(this::actionDone);
+        editButton.addActionListener(this::actionPerformed2);
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 int row = table.rowAtPoint(e.getPoint());
                 selectedRow = table.getSelectedRow();
+
                 // Obtener el objeto correspondiente del modelo
                 if (row >= 0) {
                     Object rowData = itemTable.getDataVector().elementAt(row);
                     selectedName = (String) table.getValueAt(selectedRow,0);
+                    selectedQ = (int) table.getValueAt(selectedRow, 1);
                     System.out.println(selectedName);
+                    System.out.println(selectedQ);
                     System.out.println("Objeto seleccionado: " + rowData);
                 }
             }
@@ -97,6 +101,18 @@ public class StructureView extends JFrame {
                 //Metodos abstractos para que solo acepte numeros
             }
         });
+    }
+
+    private void actionPerformed2(ActionEvent e3) {
+        String quantityInput = JOptionPane.showInputDialog("Ingrese cantidad ");
+        try {
+            int intValue = Integer.parseInt(quantityInput);
+
+            controller.updateThing(this.selectedName, intValue);
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid integer.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void actionDone(ActionEvent e2) {
