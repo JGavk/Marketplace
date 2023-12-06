@@ -4,6 +4,7 @@ import model.Product;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 
 public class InventoryFileDB implements Serializable {
 
@@ -87,5 +88,23 @@ public class InventoryFileDB implements Serializable {
 
     public static void saveInventoryData(HashMap<String, Product> inventoryItems) {
         System.out.println(inventoryItems);
+    }
+
+    public static void saveProductsToFile(HashMap<String, Product> products, String filePath) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write("{\n");
+
+            for (Map.Entry<String, Product> entry : products.entrySet()) {
+                String productName = entry.getKey();
+                Product product = entry.getValue();
+
+                // Escribir cada entrada en el formato esperado.
+                writer.write("  " + productName + "=" + product + "\n");
+            }
+
+            writer.write("}\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

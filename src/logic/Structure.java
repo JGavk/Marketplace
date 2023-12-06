@@ -22,10 +22,14 @@ public class Structure implements Serializable {
         Product tomate = new Product("tomate", 0, 1000.0);
         Product cebolla = new Product("cebolla", 0, 1200.0);
         Product arroz = new Product("arroz", 0, 2000.0);
+        Product lentejas = new Product("lentejas", 0, 2000.0);
         inventoryItems.put(tomate.getItemName(), tomate);
         inventoryItems.put(cebolla.getItemName(), cebolla);
         inventoryItems.put(arroz.getItemName(), arroz);
+        inventoryItems.put(lentejas.getItemName(), lentejas);
 
+        InventoryFileDB.loadInventoryData(this, "src/files/inventory_data.txt");
+        InventoryFileDB.saveProductsToFile(inventoryItems, "src/files/inventory_data.txt");
         InventoryFileDB.loadInventoryData(this, "src/files/inventory_data.txt");
         InventoryFileDB.saveInventoryData(inventoryItems);
     }

@@ -1,9 +1,14 @@
-{arroz=Item name: arroz
+{
+  arroz=Item name: arroz
 Price: 2000.0
-, cebolla=Item name: cebolla
+
+  tomate=Item name: tomate
+Price: 1000.0
+
+  cebolla=Item name: cebolla
 Price: 1200.0
-, papa=Item name: papa
-Price: 800.0
-, jabon=Item name: jabon
-Price: 1500.0
+
+  lentejas=Item name: lentejas
+Price: 2000.0
+
 }
