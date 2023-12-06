@@ -18,19 +18,16 @@ public class Structure implements Serializable {
         productArrayList = new ArrayList<>();
         inventoryItems = new HashMap<>();
 
-        /*
-        // Productos para ensayo *ver json inventario"
+        // Productos para ensayo
         Product tomate = new Product("tomate", 0, 1000.0);
         Product cebolla = new Product("cebolla", 0, 1200.0);
-
+        Product arroz = new Product("arroz", 0, 2000.0);
         inventoryItems.put(tomate.getItemName(), tomate);
         inventoryItems.put(cebolla.getItemName(), cebolla);
-         */
-        Product arroz = new Product("arroz", 0, 2000.0);
         inventoryItems.put(arroz.getItemName(), arroz);
 
-        InventoryFileDB.saveInventoryData(inventoryItems);
         InventoryFileDB.loadInventoryData(this, "src/files/inventory_data.txt");
+        InventoryFileDB.saveInventoryData(inventoryItems);
     }
 
     //Compra del producto y añadir al arreglo de productos

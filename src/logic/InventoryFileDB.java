@@ -19,44 +19,60 @@ public class InventoryFileDB implements Serializable {
             throw new RuntimeException(e);
         }
         try (BufferedReader reader = new BufferedReader(file)) {
+            StringBuilder fileContent = new StringBuilder();
             String line;
-            HashMap<String, Product> productsFromFile = new HashMap<>();
+
+            // Leer el contenido completo del archivo en un StringBuilder.
             while ((line = reader.readLine()) != null) {
-                // Dividir la línea por "=" para obtener el nombre y el resto de la información.
-                String[] parts = line.split("=");
-
-                if (parts.length == 2) {
-                    String productName = parts[0].trim();
-                    String productInfo = parts[1].trim();
-
-                    // Crear un nuevo producto a partir de la información.
-                    Product product = createProductFromInfo(productInfo);
-
-                    // Agregar el producto al HashMap.
-                    productsFromFile.put(productName, product);
-                }
+                fileContent.append(line).append("\n");
             }
+
+            // Parsear el contenido del archivo.
+            HashMap<String, Product> productsFromFile = parseProductsFromFile(fileContent.toString());
 
             // Actualizar el HashMap en la instancia de Structure.
             structure.updateInventoryItems(productsFromFile);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
+    private static HashMap<String, Product> parseProductsFromFile(String fileContent) {
+        HashMap<String, Product> products = new HashMap<>();
+
+        // Eliminar caracteres innecesarios y dividir por comas.
+        String[] productEntries = fileContent.replaceAll("[{}]", "").split(",");
+
+        for (String entry : productEntries) {
+            // Dividir por "=" para obtener el nombre y la información del producto.
+            String[] parts = entry.split("=");
+
+            if (parts.length == 2) {
+                String productName = parts[0].trim();
+                String productInfo = parts[1].trim();
+
+                // Crear un nuevo producto a partir de la información.
+                Product product = createProductFromInfo(productInfo);
+
+                // Agregar el producto al HashMap.
+                products.put(productName, product);
+            }
+        }
+
+        return products;
+    }
+
     private static Product createProductFromInfo(String productInfo) {
-        // Dividir la información del producto por las líneas y procesar cada línea.
-        String[] lines = productInfo.split(", ");
+        String[] lines = productInfo.split("\n");
 
         String itemName = null;
         double price = 0.0;
 
         for (String line : lines) {
-            // Dividir cada línea por ": " para obtener el nombre del atributo y su valor.
-            String[] attribute = line.split(": ");
-            if (attribute.length == 2) {
-                String attributeName = attribute[0].trim();
-                String attributeValue = attribute[1].trim();
+            String[] parts = line.split(": ");
+            if (parts.length == 2) {
+                String attributeName = parts[0].trim();
+                String attributeValue = parts[1].trim();
 
                 if (attributeName.equals("Item name")) {
                     itemName = attributeValue;
@@ -66,7 +82,6 @@ public class InventoryFileDB implements Serializable {
             }
         }
 
-        // Crear y devolver un nuevo producto.
         return new Product(itemName, 0, price);
     }
 
