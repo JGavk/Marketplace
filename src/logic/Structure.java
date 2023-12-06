@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-
 public class Structure implements Serializable {
     public static final long serialVersionUID = 1L;
     private ArrayList<Product> productArrayList; // muestra los datos en la patalla
