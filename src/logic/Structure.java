@@ -2,10 +2,7 @@ package logic;
 import model.*;
 
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -20,14 +17,21 @@ public class Structure implements Serializable {
         productArrayList = new ArrayList<>();
         inventoryItems = new HashMap<>();
 
-        // Productos para ensayo *ver json inventario"
-        Product tomate = new Product("tomate", 0, 1000.0);
+        // Productos para ensayo
+        /* tomate = new Product("tomate", 0, 1000.0);
         Product cebolla = new Product("cebolla", 0, 1200.0);
         Product arroz = new Product("arroz", 0, 2000.0);
+        Product lentejas = new Product("lentejas", 0, 2000.0);
 
         inventoryItems.put(tomate.getItemName(), tomate);
         inventoryItems.put(cebolla.getItemName(), cebolla);
         inventoryItems.put(arroz.getItemName(), arroz);
+        inventoryItems.put(lentejas.getItemName(), lentejas); */
+
+        InventoryFileDB.loadInventoryData(this, "src/files/inventory_data.txt");
+        InventoryFileDB.saveProductsToFile(inventoryItems, "src/files/inventory_data.txt");
+        InventoryFileDB.loadInventoryData(this, "src/files/inventory_data.txt");
+        InventoryFileDB.saveInventoryData(inventoryItems);
     }
 
     //Compra del producto y añadir al arreglo de productos
@@ -41,8 +45,6 @@ public class Structure implements Serializable {
         } else {
             System.out.println("No hay stock del producto");
         }
-
-
     }
     //Metodo para remover un item del arreglo
     public void popProductArray(String itemName){
@@ -142,4 +144,9 @@ public class Structure implements Serializable {
             e2.printStackTrace();
         }
     }
+
+    public void updateInventoryItems(HashMap<String, Product> newItems) {
+        inventoryItems.putAll(newItems);
+    }
+
 }
