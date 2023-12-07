@@ -10,4 +10,16 @@ Price: 1200.0
 
   lentejas=Item name: lentejas
 Price: 2000.0
+
+  salchichas=Item name: salchichas
+Price: 3000.0
+
+  huevos=Item name: huevos
+Price: 500.0
+
+  cuaderno=Item name: cuaderno
+Price: 5000.0
+
+  lapiz=Item name: lapiz
+Price: 900.0
 }

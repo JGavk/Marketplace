@@ -5,8 +5,7 @@ import controller.WelcomeController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Objects;
+
 
 public class WelcomeView extends JFrame{
     private JPanel mainPanel;
