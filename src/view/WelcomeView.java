@@ -33,7 +33,6 @@ public class WelcomeView extends JFrame{
        nombreField.setMinimumSize(null);
        ingresarButton.addActionListener(this::actionPerformed);
 
-       //Mensaje Prueba
     }
     //Setter del primer controlador
         public void setWelcomeController(WelcomeController controller){
