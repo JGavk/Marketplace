@@ -52,14 +52,18 @@ public class StructureController {
 
     }
 //Metodo update controlado
-    public void updateThing(String selectedName, int intValue) {
+    public void updateThing(String selectedName, int intValue, DefaultTableModel itemTable, int selectedRow) {
+        Product item2 = null;
         Product product = structure.getProductByName(selectedName); //Toma un producto y compara para saber su existencia, envia datos
         if (product != null) {
-            structure.updateProduct(selectedName, intValue); //Envia datos de cambio
-            System.out.println("hola");
-        } else {
-            System.out.println("Product not found");
+            item2 = structure.updateProduct(selectedName, intValue);//Envia datos de cambio
+            if(item2 !=null) {
+                itemTable.setValueAt(item2.getCantidad(),selectedRow,1);
+                itemTable.setValueAt(item2.getPrice(),selectedRow,2);
+            }
+
         }
+
     }
 
     public void chargeInventory(DefaultTableModel inventoryTable) {

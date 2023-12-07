@@ -46,17 +46,21 @@ public class Structure implements Serializable {
     }
 
 //Metodo de update item del arreglo dando nueva cantidad y precio
-    public void updateProduct(String itemName, int quantity) {
+    public Product updateProduct(String itemName, int quantity) {
+        Product item = null;
         for (Product product : productArrayList) {
             if (product != null && product.getItemName().equals(itemName)) {
+
                 double price = inventoryItems.get(itemName).getPrice();
                 product.setCantidad(quantity);
                 product.setPrice(price * quantity);
-                System.out.println("que tal");
-                System.out.println(productArrayList);
-                break;
+                item = product;
+                //System.out.println("que tal");
+                //System.out.println(productArrayList);
+
             }
         }
+        return item;
     }
 //getter del arreglo para pruebas
     public ArrayList<Product> getItemArray(){

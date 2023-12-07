@@ -1,5 +1,0 @@
-Transaction number  : 55e9243f-83f4-485d-b203-489e1b875aba
-Item             |      Amount              |    Price  
-cebolla                    2                    2400.0
-lentejas                    9                    18000.0
-tomate                    7                    7000.0

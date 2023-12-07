@@ -103,8 +103,7 @@ public class StructureView extends JFrame {
         String quantityInput = JOptionPane.showInputDialog("Ingrese cantidad ");
         try {
             int intValue = Integer.parseInt(quantityInput);
-
-            controller.updateThing(this.selectedName, intValue);
+            controller.updateThing(this.selectedName, intValue, itemTable, selectedRow);
         } catch (NumberFormatException e) {
 
             JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid integer.", "Error", JOptionPane.ERROR_MESSAGE);

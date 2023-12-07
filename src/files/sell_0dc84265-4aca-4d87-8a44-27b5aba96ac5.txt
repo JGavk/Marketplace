@@ -1,5 +1,0 @@
-Transaction number  : 0dc84265-4aca-4d87-8a44-27b5aba96ac5
-Item             |      Amount              |    Price  
-tomate                    4                    4000.0
-arroz                    5                    10000.0
-cebolla                    12                    14400.0
