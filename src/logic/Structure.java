@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Structure implements Serializable {
     public static final long serialVersionUID = 1L;
     private ArrayList<Product> productArrayList; // muestra los datos en la patalla
-    private HashMap<String, Product> inventoryItems;
+    public static HashMap<String, Product> inventoryItems;
 
 
     public Structure(){

@@ -5,8 +5,6 @@ import controller.StructureController;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
-import java.awt.event.KeyListener;
-import java.io.IOException;
 
 public class StructureView extends JFrame {
     private StructureController controller;
@@ -23,6 +21,7 @@ public class StructureView extends JFrame {
     private JTextField productField;
     private JTextField quantityField;
     private JPanel inventoryPanel;
+    private JButton btnCharge;
 
     private DefaultTableModel itemTable, inventoryTable;
     private JTable table;
@@ -51,7 +50,6 @@ public class StructureView extends JFrame {
         //Tabla de inventario en la TabPanel de inventario
         inventoryTable = new DefaultTableModel();
         inventoryTable.addColumn("Product");
-        inventoryTable.addColumn("Quantity");
         inventoryTable.addColumn("Price");
         JTable table1 = new JTable(inventoryTable);
         JScrollPane scrollPane2 = new JScrollPane(table1);
@@ -62,6 +60,7 @@ public class StructureView extends JFrame {
         //buyButton.addActionListener(this::actionPerformed);
         buyButton.setEnabled(false);
         deleteButton.addActionListener(this::actionDone);
+        btnCharge.addActionListener(this::actionPerformed3);
         editButton.addActionListener(this::actionPerformed2);
         table.addMouseListener(new MouseAdapter() {
             @Override
@@ -94,6 +93,10 @@ public class StructureView extends JFrame {
                 }
             }
         });
+    }
+
+    private void actionPerformed3(ActionEvent e4) {
+        controller.chargeInventory(inventoryTable);
     }
 
     private void actionPerformed2(ActionEvent e3) {

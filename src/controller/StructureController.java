@@ -7,6 +7,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
+
+import static logic.Structure.inventoryItems;
 
 public class StructureController {
     public StructureView sView;
@@ -59,7 +62,17 @@ public class StructureController {
         }
     }
 
-//Metodo de compra
+    public void chargeInventory(DefaultTableModel inventoryTable) {
+        for (Map.Entry<String, Product> entry : inventoryItems.entrySet()) {
+            Object[] rowData = {
+                    entry.getKey(),
+                    entry.getValue().getPrice()
+            };
+            inventoryTable.addRow(rowData);
+        }
+    }
+
+    //Metodo de compra
     class buyButtonListener implements ActionListener {
 
         @Override

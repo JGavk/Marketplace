@@ -179,7 +179,23 @@
             </constraints>
             <properties/>
             <border type="none" title="Inventario"/>
-            <children/>
+            <children>
+              <grid id="b77aa" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints border-constraint="South"/>
+                <properties>
+                  <preferredSize width="0" height="100"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="7e03" class="javax.swing.JButton" binding="btnCharge">
+                    <constraints/>
+                    <properties>
+                      <text value="Cargar"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
           </grid>
           <grid id="84e13" binding="proveedorPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
