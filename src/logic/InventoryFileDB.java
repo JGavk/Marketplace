@@ -41,50 +41,75 @@ public class InventoryFileDB implements Serializable {
     private static HashMap<String, Product> parseProductsFromFile(String fileContent) {
         HashMap<String, Product> products = new HashMap<>();
 
-        // Eliminar caracteres innecesarios y dividir por comas.
-        String[] productEntries = fileContent.replaceAll("[{}]", "").split(",");
+        // Eliminar caracteres innecesarios y dividir por líneas.
+        String[] productEntries = fileContent.replaceAll("[{}]", "").split("\n");
+
+        String currentProduct = null;
+        StringBuilder currentProductInfo = new StringBuilder();
 
         for (String entry : productEntries) {
-            // Dividir por "=" para obtener el nombre y la información del producto.
-            String[] parts = entry.split("=");
-
-            if (parts.length == 2) {
-                String productName = parts[0].trim();
-                String productInfo = parts[1].trim();
-
-                // Crear un nuevo producto a partir de la información.
-                Product product = createProductFromInfo(productInfo);
-
-                // Agregar el producto al HashMap.
-                products.put(productName, product);
+            // Ignorar líneas vacías o que contengan solo espacios.
+            if (entry.trim().isEmpty()) {
+                continue;
             }
+
+            // Verificar si la línea contiene un nombre de producto.
+            if (entry.contains("=")) {
+                // Si ya estamos procesando un producto, almacenar la información en el HashMap.
+                if (currentProduct != null) {
+                    products.put(currentProduct, createProductFromInfo(currentProductInfo.toString().trim()));
+                }
+
+                // Iniciar un nuevo producto.
+                String[] parts = entry.split("=");
+                currentProduct = parts[0].trim();
+                currentProductInfo = new StringBuilder();
+            }
+
+            // Agregar la línea al StringBuilder del producto actual.
+            currentProductInfo.append(entry).append("\n");
+        }
+
+        // Asegurarse de agregar el último producto al HashMap.
+        if (currentProduct != null) {
+            products.put(currentProduct, createProductFromInfo(currentProductInfo.toString().trim()));
         }
 
         return products;
     }
+
 
     private static Product createProductFromInfo(String productInfo) {
         String[] lines = productInfo.split("\n");
 
         String itemName = null;
         double price = 0.0;
+        int quantity = 0; // Agregamos la cantidad como propiedad del producto.
 
         for (String line : lines) {
             String[] parts = line.split(": ");
+
             if (parts.length == 2) {
                 String attributeName = parts[0].trim();
                 String attributeValue = parts[1].trim();
+
+                if (attributeName.contains("Item name")){
+                    attributeName = "Item name";
+                }
 
                 if (attributeName.equals("Item name")) {
                     itemName = attributeValue;
                 } else if (attributeName.equals("Price")) {
                     price = Double.parseDouble(attributeValue);
+                } else if (attributeName.equals("Quantity")) {
+                    quantity = Integer.parseInt(attributeValue);
                 }
             }
         }
 
-        return new Product(itemName, 0, price);
+        return new Product(itemName, quantity, price);
     }
+
 
     public static void saveInventoryData(HashMap<String, Product> inventoryItems) {
         System.out.println(inventoryItems);
