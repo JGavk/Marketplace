@@ -2,6 +2,7 @@ package logic;
 import model.*;
 
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,9 +29,6 @@ public class Structure implements Serializable {
         // Verifica si se agregó el producto al carrito
         if (product != null){
             productArrayList.add(new Product(inventoryItems.get(itemName).getItemName(), amount, price));
-            System.out.println(productArrayList); // Probar si el arreglo sirve
-        } else {
-            System.out.println("No hay stock del producto");
         }
     }
     //Metodo para remover un item del arreglo
@@ -38,10 +36,6 @@ public class Structure implements Serializable {
         Product product = searchCarProduct(itemName);
         if (product != null){
             boolean removed = productArrayList.remove(product);
-            System.out.println(productArrayList);
-            System.out.println("removed   " + removed);
-        }else {
-            System.out.println("No se pudo eliminar");
         }
     }
 
@@ -55,8 +49,6 @@ public class Structure implements Serializable {
                 product.setCantidad(quantity);
                 product.setPrice(price * quantity);
                 item = product;
-                //System.out.println("que tal");
-                //System.out.println(productArrayList);
 
             }
         }
@@ -77,10 +69,8 @@ public class Structure implements Serializable {
         Product producto = inventoryItems.get(itemName);
         // verifica si existe el producto
         if (producto != null){
-            System.out.println("Se encontró el producto");
             return producto;
         } else {
-            System.out.println("No hay stock del producto");
             return null;
         }
     }
@@ -126,12 +116,9 @@ public class Structure implements Serializable {
             });
             if (dataText != null){
                 dataText.close();
-            }else {
-                System.out.println("hola");
             }
 
         } catch (IOException e2) {
-            System.out.println("si es este");
             e2.printStackTrace();
         }
     }

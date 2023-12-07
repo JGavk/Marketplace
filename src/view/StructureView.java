@@ -74,9 +74,6 @@ public class StructureView extends JFrame {
                     Object rowData = itemTable.getDataVector().elementAt(row);
                     selectedName = (String) table.getValueAt(selectedRow,0);
                     selectedQ = (int) table.getValueAt(selectedRow, 1);
-                    System.out.println(selectedName);
-                    System.out.println(selectedQ);
-                    System.out.println("Objeto seleccionado: " + rowData);
                 }
             }
         });

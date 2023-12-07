@@ -13,7 +13,6 @@ import static logic.Structure.inventoryItems;
 
 public class StructureController {
     public StructureView sView;
-    public Product product;
     public Structure structure;
     public StructureController(StructureView sView){
         this.sView = sView;
@@ -27,20 +26,18 @@ public class StructureController {
 
         //
         try{
-        int quantity = Integer.parseInt(quantityField.getText()); //Se necesita un cambio para unirlo a la clase Producto
+        int quantity = Integer.parseInt(quantityField.getText());
         String itemName = productField.getText();
 
         // Verificar si en el txtField nombre si hay un producto con esa key en el hashmap
         Product product = structure.searchProduct(itemName);
         if (product != null){
             structure.addBought(itemName, quantity ,product.getPrice()*quantity);
-            System.out.println("Product added to shopping cart");
             table.addRow(new Object[]{product.getItemName(), quantity, product.getPrice()*quantity});
+            JOptionPane.showMessageDialog(null, "Producto Agregado!");
         } else {
-            System.out.println("Error, no agregado");
+            JOptionPane.showMessageDialog(sView.getComponent(0), "No hay stock de tal item!", "Input Error", JOptionPane.ERROR_MESSAGE);
         }
-        System.out.println(itemName);  // Souts de prueba
-        System.out.println(quantity);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Quantity must be a valid integer", "Input Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -81,7 +78,6 @@ public class StructureController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Quantity field: " + sView.getQuantityField().getText());
             structure.printBought();
             structure.clearItemArray();
             sView.refreshTableAfterBuy();
