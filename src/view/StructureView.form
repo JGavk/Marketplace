@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.StructureView">
   <grid id="27dc6" binding="mainSPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="637" height="510"/>
+      <xy x="20" y="20" width="666" height="510"/>
     </constraints>
     <properties>
       <preferredSize width="800" height="800"/>
@@ -20,7 +20,7 @@
             <constraints/>
             <properties>
               <preferredSize width="70" height="17"/>
-              <text value="  Cuenta:"/>
+              <text value="Usuario: "/>
             </properties>
           </component>
           <component id="23936" class="javax.swing.JSeparator">
@@ -213,6 +213,7 @@
                 </properties>
                 <border type="etched" title="Acciones"/>
                 <children>
+<<<<<<< HEAD
                   <component id="e7f7d" class="javax.swing.JButton" binding="cargarProveedoresButton" default-binding="true">
                     <constraints/>
                     <properties>
@@ -226,6 +227,68 @@
                 <properties>
                   <preferredSize width="400" height="0"/>
                 </properties>
+=======
+                  <grid id="aebd" layout-manager="GridBagLayout">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="852ad" class="javax.swing.JButton" binding="abastecerProductosButton" default-binding="true">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <gridbag weightx="0.0" weighty="0.0"/>
+                        </constraints>
+                        <properties>
+                          <text value="Abastecer Productos"/>
+                        </properties>
+                      </component>
+                      <hspacer id="fba37">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <gridbag weightx="0.0" weighty="0.0"/>
+                        </constraints>
+                      </hspacer>
+                      <vspacer id="bc594">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                          <gridbag weightx="0.0" weighty="0.0"/>
+                        </constraints>
+                      </vspacer>
+                      <component id="27c56" class="javax.swing.JButton" binding="agregarProveedorButton" default-binding="true">
+                        <constraints>
+                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <gridbag weightx="0.0" weighty="0.0"/>
+                        </constraints>
+                        <properties>
+                          <text value="Agregar Proveedor"/>
+                        </properties>
+                      </component>
+                      <component id="c796c" class="javax.swing.JButton" binding="eliminiarProveedorButton" default-binding="true">
+                        <constraints>
+                          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <gridbag weightx="0.0" weighty="0.0"/>
+                        </constraints>
+                        <properties>
+                          <text value="Eliminiar Proveedor"/>
+                        </properties>
+                      </component>
+                      <component id="e510b" class="javax.swing.JButton" binding="actualizarProveedorButton" default-binding="true">
+                        <constraints>
+                          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <gridbag weightx="0.0" weighty="0.0"/>
+                        </constraints>
+                        <properties>
+                          <text value="Actualizar Proveedor"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+              <grid id="145d5" binding="provTablePane" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="Center"/>
+                <properties/>
+>>>>>>> 28d8d06d6bef78210f8eb8160afa8ed000ebbe8c
                 <border type="none"/>
                 <children/>
               </grid>
