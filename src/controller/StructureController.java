@@ -20,7 +20,8 @@ public class StructureController {
         this.structure = new Structure();
 
         sView.addBuyButtonListener(new buyButtonListener());
-        sView.addAddProvButtonListener(new ProvButtonListener());
+        sView.addAddProvButtonListener(new AddProvButtonListener());
+        sView.addAbastecerButtonListener(new abastecerButtonListener());
     }
 
 //Metodo de añadir item al arreglo
@@ -92,6 +93,10 @@ public class StructureController {
         }
     }
 
+    public void abastecerInventario(){
+
+    }
+
     //Metodo de compra
     class buyButtonListener implements ActionListener {
 
@@ -103,7 +108,7 @@ public class StructureController {
 
         }
     }
-    class ProvButtonListener implements ActionListener {
+    class AddProvButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -138,6 +143,26 @@ public class StructureController {
             }
             System.out.println("Mostrando agregar");
 
+        }
+    }
+
+    class abastecerButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Obtener la fila seleccionada
+            int selectedRow = sView.getTableProvider().getSelectedRow();
+
+            // Verificar si hay una fila seleccionada
+            if (selectedRow != -1) {
+                String name = (String) sView.getTableProvider().getValueAt(selectedRow, 0);
+                String product = (String) sView.getTableProvider().getValueAt(selectedRow, 1);
+                String price = (String) sView.getTableProvider().getValueAt(selectedRow, 2);
+
+                // Utilizar los datos para abastecer el producto
+                System.out.println("Abasteciendo producto: " + name + ", " + product + ", " + price);
+            } else {
+                JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No product has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }

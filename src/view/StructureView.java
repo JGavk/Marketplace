@@ -3,10 +3,12 @@ package view;
 import controller.StructureController;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 
 public class StructureView extends JFrame {
+    private final JTable tableProvider;
     private JPanel formularioPanel;
     private JTextField AddProvName;
     private JTextField AddProductName;
@@ -71,11 +73,11 @@ public class StructureView extends JFrame {
         providorTable.addColumn("Name");
         providorTable.addColumn("Product");
         providorTable.addColumn("Price");
-        JTable table2 = new JTable(providorTable);
-        JScrollPane scrollPane3 = new JScrollPane(table2);
+        tableProvider = new JTable(providorTable);
+        JScrollPane scrollPane3 = new JScrollPane(tableProvider);
         providPanel.add(scrollPane3);
-        table2.setModel(providorTable);
-        table2.setDefaultEditor(Object.class, null);
+        tableProvider.setModel(providorTable);
+        tableProvider.setDefaultEditor(Object.class, null);
 
         addButton.addActionListener(this::actionPerformed);
         //buyButton.addActionListener(this::actionPerformed);
@@ -193,11 +195,18 @@ public class StructureView extends JFrame {
         return providorTable;
     }
 
+    public JTable getTableProvider() {
+        return tableProvider;
+    }
+
     public void addBuyButtonListener(ActionListener listener){
         buyButton.addActionListener(listener);
     }
 
     public void addAddProvButtonListener(ActionListener listener){
         agregarProveedorButton.addActionListener(listener);
+    }
+    public void addAbastecerButtonListener(ActionListener listener){
+        abastecerProdcutoButton.addActionListener(listener);
     }
 }
