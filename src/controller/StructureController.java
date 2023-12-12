@@ -19,9 +19,11 @@ public class StructureController {
         this.sView = sView;
         this.structure = new Structure();
 
-        sView.addBuyButtonListener(new buyButtonListener());
+        listarProviders();
+        sView.addBuyButtonListener(new BuyButtonListener());
         sView.addAddProvButtonListener(new AddProvButtonListener());
-        sView.addAbastecerButtonListener(new abastecerButtonListener());
+        sView.addAbastecerButtonListener(new AbastecerButtonListener());
+        sView.addActProvButtonListener(new ActProvButtonListener());
     }
 
 //Metodo de añadir item al arreglo
@@ -75,6 +77,18 @@ public class StructureController {
             inventoryTable.addRow(rowData);
         }
     }
+    public void listarProviders(){
+        while (sView.getProvidorTable().getRowCount() > 0) {
+            sView.getProvidorTable().removeRow(0);
+        }
+        if (!structure.getProviders().isEmpty()){
+            for (Map.Entry<String, Provider> entry : structure.getProviders().entrySet()) {
+                String prodName = entry.getValue().getProduct().getItemName();
+                String prodPrice = Double.toString(entry.getValue().getProduct().getPrice());
+                sView.getProvidorTable().addRow(new Object[]{entry.getKey(), prodName, prodPrice});
+           }
+        }
+    }
 
     public void addProvider(String providerName, String productName, double productPrice){
         if (structure.getProviders().containsKey(providerName)) {
@@ -92,9 +106,31 @@ public class StructureController {
             sView.getProvidorTable().addRow(new Object[]{entry.getKey(), prodName, prodPrice});
         }
     }
+    public void abastecerInventario(){
+        // Obtener la fila seleccionada
+        int selectedRow = sView.getTableProvider().getSelectedRow();
+
+        // Verificar si hay una fila seleccionada
+        if (selectedRow != -1) {
+
+            String name = (String) sView.getTableProvider().getValueAt(selectedRow, 0);
+            String product = (String) sView.getTableProvider().getValueAt(selectedRow, 1);
+            String stringPrice = (String) sView.getTableProvider().getValueAt(selectedRow, 2);
+
+            // Utilizar los datos para abastecer el producto
+            Product producto = new Product(product,0, Double.parseDouble(stringPrice));
+            structure.inventoryItems.put(producto.getItemName(),producto);
+            System.out.println("Abasteciendo producto: " + name + ", " + product + ", " + stringPrice);
+        } else {
+            JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public void actProvider(String providerName, String productName, double productPrice) {
+
+    }
 
     //Metodo de compra
-    class buyButtonListener implements ActionListener {
+    class BuyButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -112,7 +148,7 @@ public class StructureController {
             sView.showAddProvPanel();
             int result = JOptionPane.showConfirmDialog(
                     sView.getContentPane(),
-                    sView.getFormularioPanel(),
+                    sView.getAgregarPanel(),
                     "Ingrese la Información del Proveedor",
                     JOptionPane.OK_CANCEL_OPTION,
                     JOptionPane.PLAIN_MESSAGE);
@@ -140,30 +176,75 @@ public class StructureController {
         }
     }
 
-    public void abastecerInventario(){
-        // Obtener la fila seleccionada
-        int selectedRow = sView.getTableProvider().getSelectedRow();
-
-        // Verificar si hay una fila seleccionada
-        if (selectedRow != -1) {
-
-            String name = (String) sView.getTableProvider().getValueAt(selectedRow, 0);
-            String product = (String) sView.getTableProvider().getValueAt(selectedRow, 1);
-            String stringPrice = (String) sView.getTableProvider().getValueAt(selectedRow, 2);
-
-            // Utilizar los datos para abastecer el producto
-            Product producto = new Product(product,0, Double.parseDouble(stringPrice));
-            structure.inventoryItems.put(producto.getItemName(),producto);
-            System.out.println("Abasteciendo producto: " + name + ", " + product + ", " + stringPrice);
-        } else {
-            JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No product has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    class abastecerButtonListener implements ActionListener {
+    class AbastecerButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             abastecerInventario();
+        }
+    }
+
+    class ActProvButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            // Obtener la fila seleccionada
+            int selectedRow = sView.getTableProvider().getSelectedRow();
+
+            // Verificar si hay una fila seleccionada
+            if (selectedRow != -1) {sView.showActProvPanel();
+                // Datos que tiene la fila para mostrar el prov actualizando
+                String name = (String) sView.getTableProvider().getValueAt(selectedRow, 0);
+                String product = (String) sView.getTableProvider().getValueAt(selectedRow, 1);
+                String stringPrice = (String) sView.getTableProvider().getValueAt(selectedRow, 2);
+
+                sView.getInfoProvName().setText("Nombre: " + name);
+                sView.getInfoProdName().setText("Producto: " + product);
+                sView.getInfoProdPrice().setText("Precio: " + stringPrice);
+
+                Provider provider = structure.getProvider(name);
+
+                int result = JOptionPane.showConfirmDialog(
+                        sView.getContentPane(),
+                        sView.getActualizarPanel(),
+                        "Ingrese la Información del Proveedor",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE);
+
+                if (result == JOptionPane.OK_OPTION) {
+                    if(provider != null){
+                        try {
+                            // manejar la información ingresada en los JTextField para actualizar el proveedor
+                            String provName = sView.getAddProvName().getText();
+                            String productName = sView.getAddProductName().getText();
+                            int productPrice = Integer.parseInt(sView.getAddProductPrice().getText());
+
+                            // Realizar las acciones necesarias con la información...
+                            Product prod = new Product(productName,0,productPrice);
+
+                            // Remueve el proveedor anterior
+                            structure.getProviders().remove(name);
+
+                            // Pone el proveedor actualizado
+                            Provider prov = new Provider(provName, prod);
+                            structure.getProviders().put(prov.getName(),prov);
+
+                            // debuggear el hashmap de proveedores, que no se repita ni se modifique al agregar repetido
+                            System.out.println("Contenido de proveedores:");
+
+                            for (Map.Entry<String, Provider> entry : structure.getProviders().entrySet()) {
+                                System.out.println("Proveedor: " + entry.getKey() + ", Producto: " + entry.getValue().getProduct().getItemName());
+                            }
+                            listarProviders();
+                        } catch (NumberFormatException exception){
+                            JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Price must be a valid Number", "Input Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Provider doesn't exist", "Provider Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }

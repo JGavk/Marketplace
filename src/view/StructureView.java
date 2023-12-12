@@ -3,13 +3,12 @@ package view;
 import controller.StructureController;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 
 public class StructureView extends JFrame {
     private final JTable tableProvider;
-    private JPanel formularioPanel;
+    private JPanel agregarPanel;
     private JTextField AddProvName;
     private JTextField AddProductName;
     private StructureController controller;
@@ -38,6 +37,10 @@ public class StructureView extends JFrame {
     private String nameField, selectedName;
     private int selectedRow, selectedQ;
     private JTextField AddProductPrice;
+    private JPanel actualizarPanel;
+    private JLabel infoProvName;
+    private JLabel infoProdName;
+    private JLabel infoProdPrice;
 
     public StructureView(){
         //Caracteristicas de la ventana
@@ -162,21 +165,58 @@ public class StructureView extends JFrame {
     }
 
     public void showAddProvPanel(){
-        formularioPanel = new JPanel();
-        formularioPanel.add(new JLabel("Provider Name:"));
+        agregarPanel = new JPanel();
+        agregarPanel.add(new JLabel("Provider Name:"));
         AddProvName = new JTextField(10);
-        formularioPanel.add(AddProvName);
-        formularioPanel.add(new JLabel("Product:"));
+        agregarPanel.add(AddProvName);
+        agregarPanel.add(new JLabel("Product:"));
         AddProductName = new JTextField(10);
-        formularioPanel.add(AddProductName);
-        formularioPanel.add(new JLabel("Product Price:"));
+        agregarPanel.add(AddProductName);
+        agregarPanel.add(new JLabel("Product Price:"));
         AddProductPrice = new JTextField(10);
-        formularioPanel.add(AddProductPrice);
+        agregarPanel.add(AddProductPrice);
 
     }
+    public void showActProvPanel(){
+        actualizarPanel = new JPanel();
+        //agregar label para mostrar info del prov a actualizar
+        infoProvName = new JLabel("Provider Name:");
+        actualizarPanel.add(infoProvName);
+        infoProdName = new JLabel("Product:");
+        actualizarPanel.add(infoProdName);
+        infoProdPrice = new JLabel("Product Price:");
+        actualizarPanel.add(infoProdPrice);
 
-    public JPanel getFormularioPanel() {
-        return formularioPanel;
+        //
+        actualizarPanel.add(new JLabel("Provider Name:"));
+        AddProvName = new JTextField(10);
+        actualizarPanel.add(AddProvName);
+        actualizarPanel.add(new JLabel("Product:"));
+        AddProductName = new JTextField(10);
+        actualizarPanel.add(AddProductName);
+        actualizarPanel.add(new JLabel("Product Price:"));
+        AddProductPrice = new JTextField(10);
+        actualizarPanel.add(AddProductPrice);
+    }
+
+    public JPanel getActualizarPanel() {
+        return actualizarPanel;
+    }
+
+    public JPanel getAgregarPanel() {
+        return agregarPanel;
+    }
+
+    public JLabel getInfoProvName() {
+        return infoProvName;
+    }
+
+    public JLabel getInfoProdName() {
+        return infoProdName;
+    }
+
+    public JLabel getInfoProdPrice() {
+        return infoProdPrice;
     }
 
     public JTextField getAddProvName() {
@@ -208,5 +248,8 @@ public class StructureView extends JFrame {
     }
     public void addAbastecerButtonListener(ActionListener listener){
         abastecerProdcutoButton.addActionListener(listener);
+    }
+    public void addActProvButtonListener(ActionListener listener){
+        actualizarProveedorButton.addActionListener(listener);
     }
 }
