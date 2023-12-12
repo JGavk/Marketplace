@@ -271,4 +271,7 @@ public class StructureView extends JFrame {
     public void addActProvButtonListener(ActionListener listener){
         actualizarProveedorButton.addActionListener(listener);
     }
+    public void addEliProvButtonListener(ActionListener listener){
+        eliminarProveedorButton.addActionListener(listener);
+    }
 }

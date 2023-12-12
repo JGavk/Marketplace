@@ -113,6 +113,9 @@ public class Structure implements Serializable {
             providers.put(provider.getName(), provider);
         }
     }
+    public void delProvider(String providerName){
+        providers.remove(providerName);
+    }
     public Provider getProvider(String providerName){
         return providers.getOrDefault(providerName, null);
     }
