@@ -93,10 +93,6 @@ public class StructureController {
         }
     }
 
-    public void abastecerInventario(){
-
-    }
-
     //Metodo de compra
     class buyButtonListener implements ActionListener {
 
@@ -141,28 +137,33 @@ public class StructureController {
                     JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Price must be a valid Number", "Input Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
-            System.out.println("Mostrando agregar");
+        }
+    }
 
+    public void abastecerInventario(){
+        // Obtener la fila seleccionada
+        int selectedRow = sView.getTableProvider().getSelectedRow();
+
+        // Verificar si hay una fila seleccionada
+        if (selectedRow != -1) {
+
+            String name = (String) sView.getTableProvider().getValueAt(selectedRow, 0);
+            String product = (String) sView.getTableProvider().getValueAt(selectedRow, 1);
+            String stringPrice = (String) sView.getTableProvider().getValueAt(selectedRow, 2);
+
+            // Utilizar los datos para abastecer el producto
+            Product producto = new Product(product,0, Double.parseDouble(stringPrice));
+            structure.inventoryItems.put(producto.getItemName(),producto);
+            System.out.println("Abasteciendo producto: " + name + ", " + product + ", " + stringPrice);
+        } else {
+            JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No product has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     class abastecerButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Obtener la fila seleccionada
-            int selectedRow = sView.getTableProvider().getSelectedRow();
-
-            // Verificar si hay una fila seleccionada
-            if (selectedRow != -1) {
-                String name = (String) sView.getTableProvider().getValueAt(selectedRow, 0);
-                String product = (String) sView.getTableProvider().getValueAt(selectedRow, 1);
-                String price = (String) sView.getTableProvider().getValueAt(selectedRow, 2);
-
-                // Utilizar los datos para abastecer el producto
-                System.out.println("Abasteciendo producto: " + name + ", " + product + ", " + price);
-            } else {
-                JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No product has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
-            }
+            abastecerInventario();
         }
     }
 }
