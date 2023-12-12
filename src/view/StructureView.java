@@ -42,6 +42,9 @@ public class StructureView extends JFrame {
     private JLabel infoProvName;
     private JLabel infoProdName;
     private JLabel infoProdPrice;
+    private JPanel clientePanel;
+    private JTextField clienteName;
+    private JTextField clienteId;
 
     public StructureView(){
         //Caracteristicas de la ventana
@@ -216,6 +219,27 @@ public class StructureView extends JFrame {
         addProductPrice = new JTextField(10);
         controller.setPlaceholder(addProductPrice, "Update precio");
         actualizarPanel.add(addProductPrice, gbc);
+    }
+    public void showCLientForm(){
+        clientePanel = new JPanel();
+        clientePanel.add(new JLabel("Client Name:"));
+        clienteName = new JTextField(10);
+        clientePanel.add(clienteName);
+        clientePanel.add(new JLabel("Product:"));
+        clienteId = new JTextField(10);
+        clientePanel.add(clienteId);
+    }
+
+    public JPanel getClientePanel() {
+        return clientePanel;
+    }
+
+    public JTextField getClienteName() {
+        return clienteName;
+    }
+
+    public JTextField getClienteId() {
+        return clienteId;
     }
 
     public JPanel getActualizarPanel() {

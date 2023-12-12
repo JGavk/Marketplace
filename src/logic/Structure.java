@@ -2,7 +2,6 @@ package logic;
 import model.*;
 
 
-import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -121,7 +120,7 @@ public class Structure implements Serializable {
     }
 
     //Creador de txt para archivo de compra de uno o más objetos
-    public void printBought()  {
+    public void printBought(Client cliente)  {
 
         try {
             UUID transactionNum = UUID.randomUUID();
@@ -129,6 +128,8 @@ public class Structure implements Serializable {
                     transactionNum + ".txt");
             PrintWriter pw = new PrintWriter(dataText);
             pw.println("Transaction number  : " + transactionNum);
+            pw.println("Cliente Id: " + cliente.getId() + "\n" +
+                        "Cliente Name: " + cliente.getName() + "\n");
             pw.println("Item             |      Amount              |    Price  " );
 
             productArrayList.forEach(obj -> {

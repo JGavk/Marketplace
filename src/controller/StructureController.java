@@ -1,5 +1,6 @@
 package controller;
 import logic.Structure;
+import model.Client;
 import model.Product;
 import model.Provider;
 import view.*;
@@ -122,8 +123,27 @@ public class StructureController {
             JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void delProvider(String providerName){
+    public void delProvider(){
+        // Obtener la fila seleccionada
+        int selectedRow = sView.getTableProvider().getSelectedRow();
 
+        // Verificar si hay una fila seleccionada
+        if (selectedRow != -1) {
+            sView.showActProvPanel();
+            // Datos que tiene la fila para mostrar el prov actualizando
+            String name = (String) sView.getTableProvider().getValueAt(selectedRow, 0);
+            String product = (String) sView.getTableProvider().getValueAt(selectedRow, 1);
+            String stringPrice = (String) sView.getTableProvider().getValueAt(selectedRow, 2);
+
+            // funcion para eliminar un proveedor de la lista y del hashmap
+            sView.getProvidorTable().removeRow(selectedRow);
+            structure.delProvider(name);
+            listarProviders();
+
+            System.out.println("Info: " + name + product + stringPrice );
+        } else {
+            JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void setPlaceholder(JTextField textField, String placeholder) {
@@ -158,11 +178,39 @@ public class StructureController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            structure.printBought();
-            structure.clearItemArray();
-            sView.refreshTableAfterBuy();
+            sView.showCLientForm();
+            int result = JOptionPane.showConfirmDialog(
+                    sView.getContentPane(),
+                    sView.getClientePanel(),
+                    "Ingrese la Información del Cliente",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
 
+            if (result == JOptionPane.OK_OPTION) {
+                try {
+                    // manejar la información ingresada en los JTextField
+                    String clientName = sView.getClienteName().getText();
+                    int clientId = Integer.parseInt(sView.getClienteId().getText());
+
+                    // Realizar las acciones necesarias con la información...
+
+
+                    // debuggear el hashmap de proveedores, que no se repita ni se modifique al agregar repetido
+                    System.out.println("Contenido de proveedores:");
+
+                    for (Map.Entry<String, Provider> entry : structure.getProviders().entrySet()) {
+                        System.out.println("Proveedor: " + entry.getKey() + ", Producto: " + entry.getValue().getProduct().getItemName());
+                    }
+                    Client cliente = new Client(clientId, clientName);
+                    structure.printBought(cliente);
+                    structure.clearItemArray();
+                    sView.refreshTableAfterBuy();
+                } catch (NumberFormatException exception) {
+                    JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Price must be a valid Number", "Input Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
+
     }
     class AddProvButtonListener implements ActionListener {
 
@@ -276,26 +324,7 @@ public class StructureController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("eliminando proveed");
-            // Obtener la fila seleccionada
-            int selectedRow = sView.getTableProvider().getSelectedRow();
-
-            // Verificar si hay una fila seleccionada
-            if (selectedRow != -1) {
-                sView.showActProvPanel();
-                // Datos que tiene la fila para mostrar el prov actualizando
-                String name = (String) sView.getTableProvider().getValueAt(selectedRow, 0);
-                String product = (String) sView.getTableProvider().getValueAt(selectedRow, 1);
-                String stringPrice = (String) sView.getTableProvider().getValueAt(selectedRow, 2);
-
-                // funcion para eliminar un proveedor de la lista y del hashmap
-                sView.getProvidorTable().removeRow(selectedRow);
-                structure.delProvider(name);
-                listarProviders();
-
-                System.out.println("Info: " + name + product + stringPrice );
-            } else {
-                JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
-            }
+            delProvider();
         }
     }
 }
