@@ -70,6 +70,7 @@ public class StructureView extends JFrame {
         providorTable = new DefaultTableModel();
         providorTable.addColumn("Name");
         providorTable.addColumn("Product");
+        providorTable.addColumn("Price");
         JTable table2 = new JTable(providorTable);
         JScrollPane scrollPane3 = new JScrollPane(table2);
         providPanel.add(scrollPane3);

@@ -76,8 +76,15 @@ public class StructureController {
     }
 
     public void addProvider(String providerName, String productName, double productPrice){
+        if (structure.getProviders().containsKey(providerName)) {
+            JOptionPane.showMessageDialog(sView.getComponent(0), "Ya existe el proveedor", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir de la función para evitar la duplicación
+        }
         Product providerProduct = new Product(productName, 0, productPrice);
         structure.addProvider(new Provider(providerName,providerProduct));
+        while (sView.getProvidorTable().getRowCount() > 0) {
+            sView.getProvidorTable().removeRow(0);
+        }
         for (Map.Entry<String, Provider> entry : structure.getProviders().entrySet()) {
             String prodName = entry.getValue().getProduct().getItemName();
             String prodPrice = Double.toString(entry.getValue().getProduct().getPrice());
@@ -116,14 +123,15 @@ public class StructureController {
                     String productName = sView.getAddProductName().getText();
                     int productPrice = Integer.parseInt(sView.getAddProductPrice().getText());
 
-
-
                     // Realizar las acciones necesarias con la información...
                     addProvider(provName, productName, productPrice);
 
-                    System.out.println("Provider Name: " + provName);
-                    System.out.println("Provider Product´s Name: " + productName);
-                    System.out.println("Provider Product´s Price: " + (double) productPrice);
+                    // debuggear el hashmap de proveedores, que no se repita ni se modifique al agregar repetido
+                    System.out.println("Contenido de proveedores:");
+
+                    for (Map.Entry<String, Provider> entry : structure.getProviders().entrySet()) {
+                        System.out.println("Proveedor: " + entry.getKey() + ", Producto: " + entry.getValue().getProduct().getItemName());
+                    }
                 } catch (NumberFormatException exception){
                     JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Price must be a valid Number", "Input Error", JOptionPane.ERROR_MESSAGE);
                 }
