@@ -159,7 +159,6 @@ public class StructureView extends JFrame {
             controller.addItemToCart(quantityField, productField, itemTable);
             quantityField.setText("");
             productField.setText("");
-            buyButton.setEnabled(true);
         }
 
     }
@@ -220,7 +219,7 @@ public class StructureView extends JFrame {
         controller.setPlaceholder(addProductPrice, "Update precio");
         actualizarPanel.add(addProductPrice, gbc);
     }
-    public void showCLientForm(){
+    public void showClientForm(){
         clientePanel = new JPanel();
         clientePanel.add(new JLabel("Name:"));
         clienteName = new JTextField(10);
@@ -280,6 +279,10 @@ public class StructureView extends JFrame {
 
     public JTable getTableProvider() {
         return tableProvider;
+    }
+
+    public JButton getBuyButton() {
+        return buyButton;
     }
 
     public void addBuyButtonListener(ActionListener listener){

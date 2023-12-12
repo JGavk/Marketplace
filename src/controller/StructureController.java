@@ -45,6 +45,7 @@ public class StructureController {
             structure.addBought(itemName, quantity ,product.getPrice()*quantity);
             table.addRow(new Object[]{product.getItemName(), quantity, product.getPrice()*quantity});
             JOptionPane.showMessageDialog(null, "Producto Agregado!");
+            sView.getBuyButton().setEnabled(true);
         } else {
             JOptionPane.showMessageDialog(sView.getComponent(0), "No hay stock de tal item!", "Input Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -132,15 +133,11 @@ public class StructureController {
             sView.showActProvPanel();
             // Datos que tiene la fila para mostrar el prov actualizando
             String name = (String) sView.getTableProvider().getValueAt(selectedRow, 0);
-            String product = (String) sView.getTableProvider().getValueAt(selectedRow, 1);
-            String stringPrice = (String) sView.getTableProvider().getValueAt(selectedRow, 2);
 
             // funcion para eliminar un proveedor de la lista y del hashmap
             sView.getProvidorTable().removeRow(selectedRow);
             structure.delProvider(name);
             listarProviders();
-
-            System.out.println("Info: " + name + product + stringPrice );
         } else {
             JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -178,7 +175,7 @@ public class StructureController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            sView.showCLientForm();
+            sView.showClientForm();
             int result = JOptionPane.showConfirmDialog(
                     sView.getContentPane(),
                     sView.getClientePanel(),
@@ -227,12 +224,6 @@ public class StructureController {
                     // Realizar las acciones necesarias con la información...
                     addProvider(provName, productName, productPrice);
 
-                    // debuggear el hashmap de proveedores, que no se repita ni se modifique al agregar repetido
-                    System.out.println("Contenido de proveedores:");
-
-                    for (Map.Entry<String, Provider> entry : structure.getProviders().entrySet()) {
-                        System.out.println("Proveedor: " + entry.getKey() + ", Producto: " + entry.getValue().getProduct().getItemName());
-                    }
                 } catch (NumberFormatException exception){
                     JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Price must be a valid Number", "Input Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -315,7 +306,6 @@ public class StructureController {
     class EliProvButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("eliminando proveed");
             delProvider();
         }
     }
