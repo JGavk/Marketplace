@@ -12,11 +12,13 @@ public class Structure implements Serializable {
     public static final long serialVersionUID = 1L;
     private ArrayList<Product> productArrayList; // muestra los datos en la patalla
     public static HashMap<String, Product> inventoryItems;
+    private HashMap<String, Provider> providers;
 
 
     public Structure(){
         productArrayList = new ArrayList<>();
         inventoryItems = new HashMap<>();
+        providers = new HashMap<>();
 
         //InventoryFileDB.saveProductsToFile(inventoryItems, "src/files/inventory_data.txt");
         InventoryFileDB.loadInventoryData(this,"src/files/inventory_data.txt");
@@ -98,6 +100,16 @@ public class Structure implements Serializable {
             }
         }
         return null;
+    }
+
+    public HashMap<String, Provider> getProviders() {
+        return providers;
+    }
+
+    public void addProvider(Provider provider){
+        if (provider != null){
+            providers.put(provider.getName(), provider);
+        }
     }
 
     //Creador de txt para archivo de compra de uno o más objetos

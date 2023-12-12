@@ -1,6 +1,7 @@
 package controller;
 import logic.Structure;
 import model.Product;
+import model.Provider;
 import view.*;
 
 import javax.swing.*;
@@ -74,6 +75,16 @@ public class StructureController {
         }
     }
 
+    public void addProvider(String providerName, String productName, double productPrice){
+        Product providerProduct = new Product(productName, 0, productPrice);
+        structure.addProvider(new Provider(providerName,providerProduct));
+        for (Map.Entry<String, Provider> entry : structure.getProviders().entrySet()) {
+            String prodName = entry.getValue().getProduct().getItemName();
+            String prodPrice = Double.toString(entry.getValue().getProduct().getPrice());
+            sView.getProvidorTable().addRow(new Object[]{entry.getKey(), prodName, prodPrice});
+        }
+    }
+
     //Metodo de compra
     class buyButtonListener implements ActionListener {
 
@@ -99,13 +110,23 @@ public class StructureController {
                     JOptionPane.PLAIN_MESSAGE);
 
             if (result == JOptionPane.OK_OPTION) {
-                // manejar la información ingresada en los JTextField
-                String provName = sView.getAddProvName().getText();
-                String productName = sView.getAddProductName().getText();
+                try {
+                    // manejar la información ingresada en los JTextField
+                    String provName = sView.getAddProvName().getText();
+                    String productName = sView.getAddProductName().getText();
+                    int productPrice = Integer.parseInt(sView.getAddProductPrice().getText());
 
-                // Realizar las acciones necesarias con la información...
-                System.out.println("Provider Name: " + provName);
-                System.out.println("Provider Product´s Name: " + productName);
+
+
+                    // Realizar las acciones necesarias con la información...
+                    addProvider(provName, productName, productPrice);
+
+                    System.out.println("Provider Name: " + provName);
+                    System.out.println("Provider Product´s Name: " + productName);
+                    System.out.println("Provider Product´s Price: " + (double) productPrice);
+                } catch (NumberFormatException exception){
+                    JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Price must be a valid Number", "Input Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
             System.out.println("Mostrando agregar");
 

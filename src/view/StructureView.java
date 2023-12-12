@@ -35,6 +35,8 @@ public class StructureView extends JFrame {
     private JTable table;
     private String nameField, selectedName;
     private int selectedRow, selectedQ;
+    private JTextField AddProductPrice;
+
     public StructureView(){
         //Caracteristicas de la ventana
         setSize(700,700);
@@ -67,7 +69,7 @@ public class StructureView extends JFrame {
 
         providorTable = new DefaultTableModel();
         providorTable.addColumn("Name");
-        providorTable.addColumn("Business");
+        providorTable.addColumn("Product");
         JTable table2 = new JTable(providorTable);
         JScrollPane scrollPane3 = new JScrollPane(table2);
         providPanel.add(scrollPane3);
@@ -164,6 +166,9 @@ public class StructureView extends JFrame {
         formularioPanel.add(new JLabel("Product:"));
         AddProductName = new JTextField(10);
         formularioPanel.add(AddProductName);
+        formularioPanel.add(new JLabel("Product Price:"));
+        AddProductPrice = new JTextField(10);
+        formularioPanel.add(AddProductPrice);
 
     }
 
@@ -177,6 +182,14 @@ public class StructureView extends JFrame {
 
     public JTextField getAddProductName() {
         return AddProductName;
+    }
+
+    public JTextField getAddProductPrice() {
+        return AddProductPrice;
+    }
+
+    public DefaultTableModel getProvidorTable() {
+        return providorTable;
     }
 
     public void addBuyButtonListener(ActionListener listener){
