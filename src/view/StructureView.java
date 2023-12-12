@@ -222,10 +222,10 @@ public class StructureView extends JFrame {
     }
     public void showCLientForm(){
         clientePanel = new JPanel();
-        clientePanel.add(new JLabel("Client Name:"));
+        clientePanel.add(new JLabel("Name:"));
         clienteName = new JTextField(10);
         clientePanel.add(clienteName);
-        clientePanel.add(new JLabel("Product:"));
+        clientePanel.add(new JLabel("ID:"));
         clienteId = new JTextField(10);
         clientePanel.add(clienteId);
     }

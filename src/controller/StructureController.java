@@ -193,14 +193,6 @@ public class StructureController {
                     int clientId = Integer.parseInt(sView.getClienteId().getText());
 
                     // Realizar las acciones necesarias con la información...
-
-
-                    // debuggear el hashmap de proveedores, que no se repita ni se modifique al agregar repetido
-                    System.out.println("Contenido de proveedores:");
-
-                    for (Map.Entry<String, Provider> entry : structure.getProviders().entrySet()) {
-                        System.out.println("Proveedor: " + entry.getKey() + ", Producto: " + entry.getValue().getProduct().getItemName());
-                    }
                     Client cliente = new Client(clientId, clientName);
                     structure.printBought(cliente);
                     structure.clearItemArray();
