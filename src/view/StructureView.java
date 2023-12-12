@@ -23,7 +23,10 @@ public class StructureView extends JFrame {
     private JPanel inventoryPanel;
     private JButton btnCharge;
     private JPanel providPanel;
-    private JButton cargarProveedoresButton;
+    private JButton abastecerProdcutoButton;
+    private JButton agregarProveedorButton;
+    private JButton actualizarProveedorButton;
+    private JButton eliminarProveedorButton;
 
     private DefaultTableModel itemTable, inventoryTable, providorTable;
     private JTable table;

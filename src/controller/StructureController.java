@@ -19,7 +19,7 @@ public class StructureController {
         this.structure = new Structure();
 
         sView.addBuyButtonListener(new buyButtonListener());
-        sView.addAddProvButtonListener(new ProvButtonListener());
+        //sView.addAddProvButtonListener(new ProvButtonListener());
     }
 
 //Metodo de añadir item al arreglo
@@ -89,6 +89,8 @@ public class StructureController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            /*
+
             sView.showAddProvPanel();
             int result = JOptionPane.showConfirmDialog(
                     sView.getContentPane(),
@@ -110,6 +112,8 @@ public class StructureController {
                 System.out.println("Provider Product´s Price: " + (double)productPrice);
             }
             System.out.println("Mostrando agregar");
+
+             */
         }
     }
 }
