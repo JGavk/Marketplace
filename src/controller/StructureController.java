@@ -19,7 +19,7 @@ public class StructureController {
         this.structure = new Structure();
 
         sView.addBuyButtonListener(new buyButtonListener());
-        //sView.addAddProvButtonListener(new ProvButtonListener());
+        sView.addAddProvButtonListener(new ProvButtonListener());
     }
 
 //Metodo de añadir item al arreglo
@@ -89,7 +89,6 @@ public class StructureController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            /*
 
             sView.showAddProvPanel();
             int result = JOptionPane.showConfirmDialog(
@@ -103,17 +102,13 @@ public class StructureController {
                 // manejar la información ingresada en los JTextField
                 String provName = sView.getAddProvName().getText();
                 String productName = sView.getAddProductName().getText();
-                int productPrice = Integer.parseInt(sView.getAddProductPrice().getText());
-                //Product product = new Product("agua", 0, productPrice);
 
                 // Realizar las acciones necesarias con la información...
                 System.out.println("Provider Name: " + provName);
                 System.out.println("Provider Product´s Name: " + productName);
-                System.out.println("Provider Product´s Price: " + (double)productPrice);
             }
             System.out.println("Mostrando agregar");
 
-             */
         }
     }
 }

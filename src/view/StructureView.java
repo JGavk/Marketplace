@@ -7,6 +7,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 
 public class StructureView extends JFrame {
+    private JPanel formularioPanel;
+    private JTextField AddProvName;
+    private JTextField AddProductName;
     private StructureController controller;
     private JPanel mainSPanel;
     public JLabel nameLabel;
@@ -153,11 +156,34 @@ public class StructureView extends JFrame {
         this.controller = controller;
     }
 
-    public JTextField getQuantityField() {
-        return quantityField;
+    public void showAddProvPanel(){
+        formularioPanel = new JPanel();
+        formularioPanel.add(new JLabel("Provider Name:"));
+        AddProvName = new JTextField(10);
+        formularioPanel.add(AddProvName);
+        formularioPanel.add(new JLabel("Product:"));
+        AddProductName = new JTextField(10);
+        formularioPanel.add(AddProductName);
+
+    }
+
+    public JPanel getFormularioPanel() {
+        return formularioPanel;
+    }
+
+    public JTextField getAddProvName() {
+        return AddProvName;
+    }
+
+    public JTextField getAddProductName() {
+        return AddProductName;
     }
 
     public void addBuyButtonListener(ActionListener listener){
         buyButton.addActionListener(listener);
+    }
+
+    public void addAddProvButtonListener(ActionListener listener){
+        agregarProveedorButton.addActionListener(listener);
     }
 }
