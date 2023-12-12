@@ -4,6 +4,7 @@ import controller.StructureController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.*;
 
 public class StructureView extends JFrame {
@@ -22,11 +23,23 @@ public class StructureView extends JFrame {
     private JTextField quantityField;
     private JPanel inventoryPanel;
     private JButton btnCharge;
+    private JButton abastecerProductosButton;
+    private JButton agregarProveedorButton;
+    private JButton eliminiarProveedorButton;
+    private JButton actualizarProveedorButton;
+    private JPanel provTablePane;
+    private JTable provTable;
+    private DefaultTableModel defProvTable;
 
     private DefaultTableModel itemTable, inventoryTable;
     private JTable table;
     private String nameField, selectedName;
     private int selectedRow, selectedQ;
+    private JTextField addProvName;
+    private JPanel formularioPanel;
+    private JTextField addProductName;
+    private JTextField addProductPrice;
+
     public StructureView(){
         //Caracteristicas de la ventana
         setSize(700,700);
@@ -78,7 +91,16 @@ public class StructureView extends JFrame {
             }
         });
 
+        //Tabal de Proveedores
 
+        defProvTable =  new DefaultTableModel();
+        defProvTable.addColumn("Nombre Proveedor");
+        defProvTable.addColumn("Nombre Producto");
+        defProvTable.addColumn("Precio Producto");
+        provTable = new JTable(defProvTable);
+        provTable.add(new JScrollPane());
+        provTable.setModel(defProvTable);
+        provTable.setDefaultEditor(Object.class, null);
 
 
         quantityField.addKeyListener(new KeyAdapter(){
@@ -141,8 +163,40 @@ public class StructureView extends JFrame {
     public JTextField getQuantityField() {
         return quantityField;
     }
+    public void showAddProvPanel(){
+
+        formularioPanel = new JPanel();
+        formularioPanel.add(new JLabel("Provider Name:"));
+        addProvName = new JTextField(10);
+        formularioPanel.add(addProvName);
+        formularioPanel.add(new JLabel("Product Name:"));
+        addProductName = new JTextField(10);
+        formularioPanel.add(addProductName);
+        formularioPanel.add(new JLabel("Product Price:"));
+        addProductPrice = new JTextField(10);
+        formularioPanel.add(addProductPrice);
+    }
+
+    public JTextField getAddProvName() {
+        return addProvName;
+    }
+
+    public JTextField getAddProductName() {
+        return addProductName;
+    }
+
+    public JTextField getAddProductPrice() {
+        return addProductPrice;
+    }
+
+    public JPanel getFormularioPanel() {
+        return formularioPanel;
+    }
 
     public void addBuyButtonListener(ActionListener listener){
         buyButton.addActionListener(listener);
+    }
+    public void addAddProvButtonListener(ActionListener listener){
+        agregarProveedorButton.addActionListener(listener);
     }
 }
