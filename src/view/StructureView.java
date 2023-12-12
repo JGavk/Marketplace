@@ -22,8 +22,10 @@ public class StructureView extends JFrame {
     private JTextField quantityField;
     private JPanel inventoryPanel;
     private JButton btnCharge;
+    private JPanel providPanel;
+    private JButton cargarProveedoresButton;
 
-    private DefaultTableModel itemTable, inventoryTable;
+    private DefaultTableModel itemTable, inventoryTable, providorTable;
     private JTable table;
     private String nameField, selectedName;
     private int selectedRow, selectedQ;
@@ -56,6 +58,16 @@ public class StructureView extends JFrame {
         inventoryPanel.add(scrollPane2);
         table1.setModel(inventoryTable);
         table1.setDefaultEditor(Object.class, null);
+
+        providorTable = new DefaultTableModel();
+        providorTable.addColumn("Name");
+        providorTable.addColumn("Business");
+        JTable table2 = new JTable(providorTable);
+        JScrollPane scrollPane3 = new JScrollPane(table2);
+        providPanel.add(scrollPane3);
+        table2.setModel(providorTable);
+        table2.setDefaultEditor(Object.class, null);
+
         addButton.addActionListener(this::actionPerformed);
         //buyButton.addActionListener(this::actionPerformed);
         buyButton.setEnabled(false);

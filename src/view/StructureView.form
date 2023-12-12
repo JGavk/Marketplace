@@ -206,12 +206,27 @@
             </properties>
             <border type="none" title="Agregar un proveedor"/>
             <children>
-              <grid id="8b2de" layout-manager="BorderLayout" hgap="0" vgap="0">
+              <grid id="8b2de" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
                 <constraints border-constraint="South"/>
                 <properties>
                   <preferredSize width="100" height="70"/>
                 </properties>
                 <border type="etched" title="Acciones"/>
+                <children>
+                  <component id="e7f7d" class="javax.swing.JButton" binding="cargarProveedoresButton" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <text value="Cargar proveedores"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="fb399" binding="providPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="East"/>
+                <properties>
+                  <preferredSize width="400" height="0"/>
+                </properties>
+                <border type="none"/>
                 <children/>
               </grid>
             </children>
