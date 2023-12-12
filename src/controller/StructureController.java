@@ -6,8 +6,11 @@ import view.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.Map;
 
 import static logic.Structure.inventoryItems;
@@ -125,9 +128,33 @@ public class StructureController {
             JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void actProvider(String providerName, String productName, double productPrice) {
 
+    public void setPlaceholder(JTextField textField, String placeholder) {
+        // Establecer el color de texto y el texto del marcador de posición
+        textField.setForeground(Color.GRAY);
+        textField.setText(placeholder);
+
+        textField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // Eliminar el texto del marcador de posición al ganar el foco
+                if (textField.getText().equals(placeholder)) {
+                    textField.setText("");
+                    textField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                // Restaurar el texto del marcador de posición si el campo está vacío al perder el foco
+                if (textField.getText().isEmpty()) {
+                    textField.setForeground(Color.GRAY);
+                    textField.setText(placeholder);
+                }
+            }
+        });
     }
+
 
     //Metodo de compra
     class BuyButtonListener implements ActionListener {

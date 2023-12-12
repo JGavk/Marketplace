@@ -4,13 +4,14 @@ import controller.StructureController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.*;
 
 public class StructureView extends JFrame {
     private final JTable tableProvider;
     private JPanel agregarPanel;
-    private JTextField AddProvName;
-    private JTextField AddProductName;
+    private JTextField addProvName;
+    private JTextField addProductName;
     private StructureController controller;
     private JPanel mainSPanel;
     public JLabel nameLabel;
@@ -36,7 +37,7 @@ public class StructureView extends JFrame {
     private JTable table;
     private String nameField, selectedName;
     private int selectedRow, selectedQ;
-    private JTextField AddProductPrice;
+    private JTextField addProductPrice;
     private JPanel actualizarPanel;
     private JLabel infoProvName;
     private JLabel infoProdName;
@@ -167,36 +168,54 @@ public class StructureView extends JFrame {
     public void showAddProvPanel(){
         agregarPanel = new JPanel();
         agregarPanel.add(new JLabel("Provider Name:"));
-        AddProvName = new JTextField(10);
-        agregarPanel.add(AddProvName);
+        addProvName = new JTextField(10);
+        agregarPanel.add(addProvName);
         agregarPanel.add(new JLabel("Product:"));
-        AddProductName = new JTextField(10);
-        agregarPanel.add(AddProductName);
+        addProductName = new JTextField(10);
+        agregarPanel.add(addProductName);
         agregarPanel.add(new JLabel("Product Price:"));
-        AddProductPrice = new JTextField(10);
-        agregarPanel.add(AddProductPrice);
+        addProductPrice = new JTextField(10);
+        agregarPanel.add(addProductPrice);
 
     }
     public void showActProvPanel(){
         actualizarPanel = new JPanel();
-        //agregar label para mostrar info del prov a actualizar
-        infoProvName = new JLabel("Provider Name:");
-        actualizarPanel.add(infoProvName);
-        infoProdName = new JLabel("Product:");
-        actualizarPanel.add(infoProdName);
-        infoProdPrice = new JLabel("Product Price:");
-        actualizarPanel.add(infoProdPrice);
+        actualizarPanel.setLayout(new GridBagLayout());
 
-        //
-        actualizarPanel.add(new JLabel("Provider Name:"));
-        AddProvName = new JTextField(10);
-        actualizarPanel.add(AddProvName);
-        actualizarPanel.add(new JLabel("Product:"));
-        AddProductName = new JTextField(10);
-        actualizarPanel.add(AddProductName);
-        actualizarPanel.add(new JLabel("Product Price:"));
-        AddProductPrice = new JTextField(10);
-        actualizarPanel.add(AddProductPrice);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10,10,10,10);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        infoProvName = new JLabel("");
+        actualizarPanel.add(infoProvName, gbc);
+
+        gbc.gridy = 1;
+        infoProdName = new JLabel("");
+        actualizarPanel.add(infoProdName, gbc);
+
+        gbc.gridy = 2;
+        infoProdPrice = new JLabel("");
+        actualizarPanel.add(infoProdPrice, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        addProvName = new JTextField(10);
+        controller.setPlaceholder(addProvName, "Update proveedor");
+        actualizarPanel.add(addProvName, gbc);
+
+        gbc.gridy = 1;
+        addProductName = new JTextField(10);
+        controller.setPlaceholder(addProductName, "Update producto");
+        actualizarPanel.add(addProductName, gbc);
+
+        gbc.gridy = 2;
+        addProductPrice = new JTextField(10);
+        controller.setPlaceholder(addProductPrice, "Update precio");
+        actualizarPanel.add(addProductPrice, gbc);
     }
 
     public JPanel getActualizarPanel() {
@@ -220,15 +239,15 @@ public class StructureView extends JFrame {
     }
 
     public JTextField getAddProvName() {
-        return AddProvName;
+        return addProvName;
     }
 
     public JTextField getAddProductName() {
-        return AddProductName;
+        return addProductName;
     }
 
     public JTextField getAddProductPrice() {
-        return AddProductPrice;
+        return addProductPrice;
     }
 
     public DefaultTableModel getProvidorTable() {
