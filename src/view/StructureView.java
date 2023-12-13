@@ -32,6 +32,11 @@ public class StructureView extends JFrame {
     private JButton agregarProveedorButton;
     private JButton actualizarProveedorButton;
     private JButton eliminarProveedorButton;
+    private JButton añadirButton;
+    private JButton actualizarButton;
+    private JButton borrarButton;
+    private JTextArea textArea1;
+    private JTextField textField1;
 
     private DefaultTableModel itemTable, inventoryTable, providorTable;
     private JTable table;
@@ -87,7 +92,6 @@ public class StructureView extends JFrame {
         tableProvider.setDefaultEditor(Object.class, null);
 
         addButton.addActionListener(this::actionPerformed);
-        //buyButton.addActionListener(this::actionPerformed);
         buyButton.setEnabled(false);
         deleteButton.addActionListener(this::actionDone);
         btnCharge.addActionListener(this::actionPerformed3);
@@ -283,6 +287,14 @@ public class StructureView extends JFrame {
 
     public JButton getBuyButton() {
         return buyButton;
+    }
+
+    public DefaultTableModel getItemTable() {
+        return itemTable;
+    }
+
+    public DefaultTableModel getInventoryTable() {
+        return inventoryTable;
     }
 
     public void addBuyButtonListener(ActionListener listener){

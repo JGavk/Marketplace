@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
 import java.util.Map;
 
 import static logic.Structure.inventoryItems;
@@ -75,12 +76,14 @@ public class StructureController {
     }
 
     public void chargeInventory(DefaultTableModel inventoryTable) {
-        for (Map.Entry<String, Product> entry : inventoryItems.entrySet()) {
-            Object[] rowData = {
-                    entry.getKey(),
-                    entry.getValue().getPrice()
-            };
-            inventoryTable.addRow(rowData);
+        if (sView.getInventoryTable().getRowCount() == 0){
+            for (Map.Entry<String, Product> entry : inventoryItems.entrySet()) {
+                Object[] rowData = {
+                        entry.getKey(),
+                        entry.getValue().getPrice()
+                };
+                inventoryTable.addRow(rowData);
+            }
         }
     }
     public void listarProviders(){
@@ -190,7 +193,22 @@ public class StructureController {
                     int clientId = Integer.parseInt(sView.getClienteId().getText());
 
                     // Realizar las acciones necesarias con la información...
-                    Client cliente = new Client(clientId, clientName);
+                    ArrayList<Product> clientProducts = new ArrayList<>();
+                    DefaultTableModel dtm = sView.getItemTable();
+
+                    for (int row = 0; row < dtm.getRowCount(); row++){
+                        String name = (String) dtm.getValueAt(row, 0);
+                        int quantity = (int) dtm.getValueAt(row, 1);
+                        double price = (double) dtm.getValueAt(row, 2);
+
+
+                        Product product = new Product(name, quantity, price);
+                        clientProducts.add(product);
+                    }
+                    for (Product product : clientProducts) {
+                        System.out.println(product);
+                    }
+                    Client cliente = new Client(clientId, clientName, clientProducts);
                     structure.printBought(cliente);
                     structure.clearItemArray();
                     sView.refreshTableAfterBuy();
