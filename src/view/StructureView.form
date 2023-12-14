@@ -187,19 +187,19 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <grid id="76910" layout-manager="BorderLayout" hgap="0" vgap="0">
+                  <grid id="76910" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
                     <constraints border-constraint="West"/>
                     <properties/>
                     <border type="none"/>
                     <children>
                       <component id="3a713" class="javax.swing.JButton" binding="añadirButton" default-binding="true">
-                        <constraints border-constraint="West"/>
+                        <constraints/>
                         <properties>
                           <text value="Añadir"/>
                         </properties>
                       </component>
                       <component id="9ba48" class="javax.swing.JButton" binding="actualizarButton" default-binding="true">
-                        <constraints border-constraint="Center"/>
+                        <constraints/>
                         <properties>
                           <horizontalAlignment value="0"/>
                           <horizontalTextPosition value="11"/>
@@ -208,59 +208,55 @@
                         </properties>
                       </component>
                       <component id="4e353" class="javax.swing.JButton" binding="borrarButton" default-binding="true">
-                        <constraints border-constraint="East"/>
+                        <constraints/>
                         <properties>
                           <text value="Borrar"/>
                         </properties>
                       </component>
+                      <component id="7e03" class="javax.swing.JButton" binding="btnCharge">
+                        <constraints/>
+                        <properties>
+                          <horizontalAlignment value="0"/>
+                          <preferredSize width="78" height="30"/>
+                          <text value="Cargar"/>
+                        </properties>
+                      </component>
                     </children>
                   </grid>
-                  <component id="7e03" class="javax.swing.JButton" binding="btnCharge">
-                    <constraints border-constraint="South"/>
-                    <properties>
-                      <text value="Cargar"/>
-                    </properties>
-                  </component>
-                  <grid id="639b6" layout-manager="GridBagLayout">
+                  <grid id="639b6" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
                     <constraints border-constraint="Center"/>
                     <properties/>
                     <border type="none"/>
                     <children>
                       <component id="4ff68" class="javax.swing.JLabel">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                          <gridbag weightx="0.0" weighty="0.0"/>
-                        </constraints>
+                        <constraints/>
                         <properties>
                           <text value="Nombre Producto"/>
                         </properties>
                       </component>
                       <component id="1daa4" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
-                        <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="50"/>
-                          </grid>
-                          <gridbag weightx="0.0" weighty="0.0"/>
-                        </constraints>
-                        <properties/>
+                        <constraints/>
+                        <properties>
+                          <preferredSize width="150" height="30"/>
+                        </properties>
+                      </component>
+                      <component id="a1ab8" class="javax.swing.JSeparator">
+                        <constraints/>
+                        <properties>
+                          <preferredSize width="40" height="3"/>
+                        </properties>
                       </component>
                       <component id="85bfb" class="javax.swing.JLabel">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                          <gridbag weightx="0.0" weighty="0.0"/>
-                        </constraints>
+                        <constraints/>
                         <properties>
                           <text value="Precio"/>
                         </properties>
                       </component>
                       <component id="c0cb9" class="javax.swing.JTextField" binding="textField1" default-binding="true">
-                        <constraints>
-                          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
-                          </grid>
-                          <gridbag weightx="0.0" weighty="0.0"/>
-                        </constraints>
-                        <properties/>
+                        <constraints/>
+                        <properties>
+                          <preferredSize width="140" height="30"/>
+                        </properties>
                       </component>
                     </children>
                   </grid>
