@@ -156,9 +156,5 @@ public class Structure implements Serializable {
     public void updateProviders(HashMap<String, Provider> newItems) {
         providers.putAll(newItems);
     }
-    public void updateProvidor(HashMap<String, Provider> newProvidor ){
-        providers.putAll(newProvidor);
-
-    }
 
 }

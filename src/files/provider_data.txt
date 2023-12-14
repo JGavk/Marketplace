@@ -1,9 +1,4 @@
 {
-  Tomate SA=name: Tomate SA
-Item name: tomate
-Price: 500.0
-
-
   Farms=name: Farms
 Item name: fresa
 Price: 600.0
