@@ -77,14 +77,15 @@ public class StructureController {
     }
 
     public void chargeInventory(DefaultTableModel inventoryTable) {
-        if (sView.getInventoryTable().getRowCount() == 0){
-            for (Map.Entry<String, Product> entry : inventoryItems.entrySet()) {
-                Object[] rowData = {
-                        entry.getKey(),
-                        entry.getValue().getPrice()
-                };
-                inventoryTable.addRow(rowData);
-            }
+        // Elimina todas las filas existentes en la tabla
+        inventoryTable.setRowCount(0);
+
+        for (Map.Entry<String, Product> entry : inventoryItems.entrySet()) {
+            Object[] rowData = {
+                    entry.getKey(),
+                    entry.getValue().getPrice()
+            };
+            inventoryTable.addRow(rowData);
         }
     }
     public void listarProviders(){
@@ -123,6 +124,7 @@ public class StructureController {
             // Utilizar los datos para abastecer el producto
             Product producto = new Product(product,0, Double.parseDouble(stringPrice));
             structure.inventoryItems.put(producto.getItemName(),producto);
+            chargeInventory(sView.getInventoryTable());
             System.out.println("Abasteciendo producto: " + name + ", " + product + ", " + stringPrice);
         } else {
             JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);

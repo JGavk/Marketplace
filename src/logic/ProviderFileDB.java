@@ -73,58 +73,6 @@ public class ProviderFileDB implements Serializable {
         return proveedores;
     }
 
-    public static void extractAndSaveInfo(Structure structure) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/files/archivo_salida.txt"));
-             BufferedWriter writer = new BufferedWriter(new FileWriter("src/files/archivo_separado.txt"))) {
-
-            String line;
-            int lineCount = 0;
-            String proveedor = "";
-            String producto = "";
-            String precio;
-
-            HashMap<String,Provider> providerss = new HashMap<>();
-
-            // Leer el contenido completo del archivo de entrada.
-            while ((line = reader.readLine()) != null) {
-                // Incrementar el contador de líneas.
-                lineCount++;
-
-                // Determinar qué información se debe extraer y escribir.
-                if (lineCount % 3 == 1) {
-                    // Es la primera línea, contiene el proveedor.
-                    proveedor = line.trim();
-                } else if (lineCount % 3 == 2) {
-                    // Es la segunda línea, contiene el producto.
-                    producto = line.trim().replace("Item name: product: ", "");
-                } else if (lineCount % 3 == 0) {
-                    // Es la tercera línea, contiene el precio.
-                    precio = line.trim().replace("Price: ", "");
-                    // Escribir la información en el archivo de salida.
-                    writer.write("El proveedor es: " + proveedor + "\n");
-                    writer.write("El producto es: " + producto + "\n");
-                    writer.write("El precio es: " + precio + "\n\n");
-
-                    if (!proveedor.equals("") || !producto.equals("") || !precio.equals("")){
-                        Provider provider = new Provider(proveedor, new Product(producto,0, Double.parseDouble(precio)));
-                        //System.out.println("Provider: \n" + provider);
-                        providerss.put(provider.getName(),provider);
-                        System.out.println(providerss);
-                    }
-                }
-            }
-            structure.updateProviders(providerss);
-            System.out.println("Extracción de información exitosa.");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-
     /* CEMENTERIO FUNCIONES ANTIGUAS ---------------------------------------------------------------------------------
     public static void loadProviderData(Structure structure) {
         FileReader file = null;
