@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   Farms=name: Farms
 Item name: fresa
 Price: 600.0
@@ -15,3 +16,10 @@ Price: 2000.0
 
 
 }
+=======
+  Juan=Item name: Juan
+Product: tomate
+Price: 2000.0
+
+}
+>>>>>>> 5cb1fbcfa51c364b7194f58812f7190e32c77d06
