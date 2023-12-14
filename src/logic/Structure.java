@@ -19,10 +19,26 @@ public class Structure implements Serializable {
         inventoryItems = new HashMap<>();
         providers = new HashMap<>();
 
+
+        /*
         Provider providerTest = new Provider("Granjas S.A.", new Product("pollo",0,12000.0));
         providers.put(providerTest.getName(),providerTest);
+        Provider providerTests = new Provider("Farms", new Product("fresa",0,600.0));
+        providers.put(providerTests.getName(),providerTests);
+        Provider providerTestsS = new Provider("ORO", new Product("oro",0,20000.0));
+        providers.put(providerTestsS.getName(),providerTestsS);
+         */
+
+        // File para inventario
         //InventoryFileDB.saveProductsToFile(inventoryItems, "src/files/inventory_data.txt");
         InventoryFileDB.loadInventoryData(this,"src/files/inventory_data.txt");
+
+        // File para proveedores
+        try{
+        providers.putAll(ProviderFileDB.procesarArchivo());
+        } catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     //Compra del producto y añadir al arreglo de productos
@@ -146,6 +162,9 @@ public class Structure implements Serializable {
 
     public void updateInventoryItems(HashMap<String, Product> newItems) {
         inventoryItems.putAll(newItems);
+    }
+    public void updateProviders(HashMap<String, Provider> newItems){
+        providers.putAll(newItems);
     }
 
 }

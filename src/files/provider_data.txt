@@ -1,0 +1,17 @@
+{
+  Farms=name: Farms
+Item name: fresa
+Price: 600.0
+
+
+  ORO=name: ORO
+Item name: oro
+Price: 300000.0
+
+
+  Canasta SA=name: Canasta SA
+Item name: canasta
+Price: 2000.0
+
+
+}

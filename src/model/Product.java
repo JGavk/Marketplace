@@ -51,7 +51,7 @@ public class Product implements Serializable {
 
         return
                 "Item name: " + getItemName() + '\n' +
-                        "Price: " + getPrice()+ '\n';
+                        "Price: " + getPrice() + '\n';
     }
 
 

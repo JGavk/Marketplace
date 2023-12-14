@@ -1,4 +1,5 @@
 package controller;
+import logic.ProviderFileDB;
 import logic.Structure;
 import model.Client;
 import model.Product;
@@ -141,6 +142,7 @@ public class StructureController {
             sView.getProvidorTable().removeRow(selectedRow);
             structure.delProvider(name);
             listarProviders();
+            ProviderFileDB.saveProviderToFile(structure.getProviders());
         } else {
             JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -241,6 +243,7 @@ public class StructureController {
 
                     // Realizar las acciones necesarias con la información...
                     addProvider(provName, productName, productPrice);
+                    ProviderFileDB.saveProviderToFile(structure.getProviders());
 
                 } catch (NumberFormatException exception){
                     JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Price must be a valid Number", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -319,6 +322,7 @@ public class StructureController {
             } else {
                 JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
             }
+            ProviderFileDB.saveProviderToFile(structure.getProviders());
         }
     }
     class EliProvButtonListener implements ActionListener{
