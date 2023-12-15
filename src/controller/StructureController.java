@@ -1,4 +1,5 @@
 package controller;
+import logic.InventoryFileDB;
 import logic.ProviderFileDB;
 import logic.Structure;
 import model.Client;
@@ -31,6 +32,9 @@ public class StructureController {
         sView.addAbastecerButtonListener(new AbastecerButtonListener());
         sView.addActProvButtonListener(new ActProvButtonListener());
         sView.addEliProvButtonListener(new EliProvButtonListener());
+        sView.addAddProdButtonListener(new AddProdButtonListener());
+        sView.addEliProdButtonListener(new EliProdButtonListener());
+        sView.addActProdButtonListener(new ActProdButtonListener());
     }
 
 //Metodo de añadir item al arreglo
@@ -100,6 +104,18 @@ public class StructureController {
            }
         }
     }
+    public void listarProducts(){
+        while (sView.getInventoryTable().getRowCount() > 0) {
+            sView.getInventoryTable().removeRow(0);
+        }
+        if (!Structure.getInventoryItems().isEmpty()){
+            for (Map.Entry<String, Product> entry : Structure.getInventoryItems().entrySet()) {
+                String prodName = entry.getValue().getItemName();
+                String prodPrice = Double.toString(entry.getValue().getPrice());
+                sView.getInventoryTable().addRow(new Object[]{entry.getKey(), prodName, prodPrice});
+            }
+        }
+    }
 
     public void addProvider(String providerName, String productName, double productPrice){
         if (structure.getProviders().containsKey(providerName)) {
@@ -123,8 +139,9 @@ public class StructureController {
 
             // Utilizar los datos para abastecer el producto
             Product producto = new Product(product,0, Double.parseDouble(stringPrice));
-            structure.inventoryItems.put(producto.getItemName(),producto);
+            inventoryItems.put(producto.getItemName(),producto);
             chargeInventory(sView.getInventoryTable());
+            InventoryFileDB.saveProductsToFile(inventoryItems);
             System.out.println("Abasteciendo producto: " + name + ", " + product + ", " + stringPrice);
         } else {
             JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
@@ -149,7 +166,14 @@ public class StructureController {
             JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    public void addProduct(String productName, double productPrice){
+        if (inventoryItems.containsKey(productName)) {
+            JOptionPane.showMessageDialog(sView.getComponent(0), "Ya existe el Producto", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir de la función para evitar la duplicación
+        }
+        Product product = new Product(productName, 0, productPrice);
+        structure.addProduct(product);
+    }
     public void setPlaceholder(JTextField textField, String placeholder) {
         // Establecer el color de texto y el texto del marcador de posición
         textField.setForeground(Color.GRAY);
@@ -175,8 +199,6 @@ public class StructureController {
             }
         });
     }
-
-
     //Metodo de compra
     class BuyButtonListener implements ActionListener {
 
@@ -245,6 +267,7 @@ public class StructureController {
 
                     // Realizar las acciones necesarias con la información...
                     addProvider(provName, productName, productPrice);
+                    chargeInventory(sView.getInventoryTable());
                     ProviderFileDB.saveProviderToFile(structure.getProviders());
 
                 } catch (NumberFormatException exception){
@@ -253,14 +276,12 @@ public class StructureController {
             }
         }
     }
-
     class AbastecerButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             abastecerInventario();
         }
     }
-
     class ActProvButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -331,6 +352,46 @@ public class StructureController {
         @Override
         public void actionPerformed(ActionEvent e) {
             delProvider();
+        }
+    }
+    class AddProdButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Añadiendo producto");
+            sView.showAddProdPanel();
+            int result = JOptionPane.showConfirmDialog(
+                    sView.getContentPane(),
+                    sView.getAddProdPane(),
+                    "Ingrese la Información del Producto",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+
+            if (result == JOptionPane.OK_OPTION) {
+                try {
+                    // manejar la información ingresada en los JTextField
+                    String prodName = sView.getAddProdName().getText();
+                    int prodPrice = Integer.parseInt(sView.getAddProdPrice().getText());
+
+                    // Realizar las acciones necesarias con la información...
+                    addProduct(prodName,prodPrice);
+                    chargeInventory(sView.getInventoryTable());
+                    InventoryFileDB.saveProductsToFile(inventoryItems);
+                } catch (NumberFormatException exception){
+                    JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Price must be a valid Number", "Input Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }
+    class EliProdButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Eliminando producto");
+        }
+    }
+    class ActProdButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
         }
     }
 }

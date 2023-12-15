@@ -50,6 +50,9 @@ public class StructureView extends JFrame {
     private JPanel clientePanel;
     private JTextField clienteName;
     private JTextField clienteId;
+    private JPanel addProdPane;
+    private JTextField addProdName;
+    private JTextField addProdPrice;
 
     public StructureView(){
         //Caracteristicas de la ventana
@@ -232,6 +235,27 @@ public class StructureView extends JFrame {
         clienteId = new JTextField(10);
         clientePanel.add(clienteId);
     }
+    public void showAddProdPanel(){
+        addProdPane = new JPanel();
+        addProdPane.add(new JLabel("Product name"));
+        addProdName = new JTextField(10);
+        addProdPane.add(addProdName);
+        addProdPane.add(new JLabel("Product price"));
+        addProdPrice = new JTextField(10);
+        addProdPane.add(addProdPrice);
+    }
+
+    public JPanel getAddProdPane() {
+        return addProdPane;
+    }
+
+    public JTextField getAddProdName() {
+        return addProdName;
+    }
+
+    public JTextField getAddProdPrice() {
+        return addProdPrice;
+    }
 
     public JPanel getClientePanel() {
         return clientePanel;
@@ -312,5 +336,14 @@ public class StructureView extends JFrame {
     }
     public void addEliProvButtonListener(ActionListener listener){
         eliminarProveedorButton.addActionListener(listener);
+    }
+    public void addAddProdButtonListener(ActionListener listener){
+        añadirButton.addActionListener(listener);
+    }
+    public void addEliProdButtonListener(ActionListener listener){
+        borrarButton.addActionListener(listener);
+    }
+    public void addActProdButtonListener(ActionListener listener){
+        actualizarButton.addActionListener(listener);
     }
 }

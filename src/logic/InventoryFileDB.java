@@ -12,10 +12,10 @@ public class InventoryFileDB implements Serializable {
 
     private static final String FILE_PATH = "src/files/inventory_data.txt";
 
-    public static void loadInventoryData(Structure structure, String filePath) {
+    public static void loadInventoryData(Structure structure) {
         FileReader file = null;
         try {
-            file = new FileReader(filePath);
+            file = new FileReader(FILE_PATH);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -115,8 +115,8 @@ public class InventoryFileDB implements Serializable {
         System.out.println(inventoryItems);
     }
 
-    public static void saveProductsToFile(HashMap<String, Product> products, String filePath) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+    public static void saveProductsToFile(HashMap<String, Product> products) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
             writer.write("{\n");
 
             for (Map.Entry<String, Product> entry : products.entrySet()) {

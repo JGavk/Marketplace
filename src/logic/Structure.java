@@ -20,7 +20,7 @@ public class Structure implements Serializable {
         providers = new HashMap<>();
 
 
-        InventoryFileDB.loadInventoryData(this,"src/files/inventory_data.txt");
+        InventoryFileDB.loadInventoryData(this);
 
         // File para proveedores
         try{
@@ -122,6 +122,15 @@ public class Structure implements Serializable {
     }
     public Provider getProvider(String providerName){
         return providers.getOrDefault(providerName, null);
+    }
+    public void addProduct(Product product){
+        if(product != null){
+            inventoryItems.put(product.getItemName(),product);
+        }
+    }
+
+    public static HashMap<String, Product> getInventoryItems() {
+        return inventoryItems;
     }
 
     //Creador de txt para archivo de compra de uno o más objetos
