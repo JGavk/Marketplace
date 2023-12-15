@@ -107,6 +107,9 @@ public class Structure implements Serializable {
         }
         return null;
     }
+    public Product getProduct(String name){
+        return inventoryItems.getOrDefault(name, null);
+    }
 
     public HashMap<String, Provider> getProviders() {
         return providers;

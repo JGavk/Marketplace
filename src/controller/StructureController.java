@@ -105,14 +105,14 @@ public class StructureController {
         }
     }
     public void listarProducts(){
-        while (sView.getInventoryTable().getRowCount() > 0) {
-            sView.getInventoryTable().removeRow(0);
+        while (sView.getInventoryTableD().getRowCount() > 0) {
+            sView.getInventoryTableD().removeRow(0);
         }
         if (!Structure.getInventoryItems().isEmpty()){
             for (Map.Entry<String, Product> entry : Structure.getInventoryItems().entrySet()) {
                 String prodName = entry.getValue().getItemName();
                 String prodPrice = Double.toString(entry.getValue().getPrice());
-                sView.getInventoryTable().addRow(new Object[]{entry.getKey(), prodName, prodPrice});
+                sView.getInventoryTableD().addRow(new Object[]{entry.getKey(), prodName, prodPrice});
             }
         }
     }
@@ -140,7 +140,7 @@ public class StructureController {
             // Utilizar los datos para abastecer el producto
             Product producto = new Product(product,0, Double.parseDouble(stringPrice));
             inventoryItems.put(producto.getItemName(),producto);
-            chargeInventory(sView.getInventoryTable());
+            chargeInventory(sView.getInventoryTableD());
             InventoryFileDB.saveProductsToFile(inventoryItems);
             System.out.println("Abasteciendo producto: " + name + ", " + product + ", " + stringPrice);
         } else {
@@ -153,8 +153,7 @@ public class StructureController {
 
         // Verificar si hay una fila seleccionada
         if (selectedRow != -1) {
-            sView.showActProvPanel();
-            // Datos que tiene la fila para mostrar el prov actualizando
+            // Datos que tiene la fila para mostrar el prov eliminando
             String name = (String) sView.getTableProvider().getValueAt(selectedRow, 0);
 
             // funcion para eliminar un proveedor de la lista y del hashmap
@@ -267,7 +266,7 @@ public class StructureController {
 
                     // Realizar las acciones necesarias con la información...
                     addProvider(provName, productName, productPrice);
-                    chargeInventory(sView.getInventoryTable());
+                    chargeInventory(sView.getInventoryTableD());
                     ProviderFileDB.saveProviderToFile(structure.getProviders());
 
                 } catch (NumberFormatException exception){
@@ -335,6 +334,7 @@ public class StructureController {
                                 System.out.println("Proveedor: " + entry.getKey() + ", Producto: " + entry.getValue().getProduct().getItemName());
                             }
                             listarProviders();
+                            ProviderFileDB.saveProviderToFile(structure.getProviders());
                         } catch (NumberFormatException exception){
                             JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Price must be a valid Number", "Input Error", JOptionPane.ERROR_MESSAGE);
                         }
@@ -345,7 +345,6 @@ public class StructureController {
             } else {
                 JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
             }
-            ProviderFileDB.saveProviderToFile(structure.getProviders());
         }
     }
     class EliProvButtonListener implements ActionListener{
@@ -374,7 +373,7 @@ public class StructureController {
 
                     // Realizar las acciones necesarias con la información...
                     addProduct(prodName,prodPrice);
-                    chargeInventory(sView.getInventoryTable());
+                    chargeInventory(sView.getInventoryTableD());
                     InventoryFileDB.saveProductsToFile(inventoryItems);
                 } catch (NumberFormatException exception){
                     JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Price must be a valid Number", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -382,16 +381,71 @@ public class StructureController {
             }
         }
     }
+    class ActProdButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Obtener la fila seleccionada
+            int selectedRow = sView.getInventoryTable().getSelectedRow();
+
+            // Verificar si hay una fila seleccionada
+            if (selectedRow != -1) {
+                sView.showActProdPanel();
+                // Datos que tiene la fila para mostrar el prod actualizando
+                String name = (String) sView.getInventoryTable().getValueAt(selectedRow, 0);
+                double price = (double) sView.getInventoryTable().getValueAt(selectedRow, 1);
+
+                sView.getProdName().setText("Nombre: " + name);
+                sView.getProdPrice().setText("Precio: " + price);
+
+                Product product = structure.getProduct(name);
+
+                int result = JOptionPane.showConfirmDialog(
+                        sView.getContentPane(),
+                        sView.getActProdPane(),
+                        "Ingrese la Nueva Información del Producto",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE);
+
+                if (result == JOptionPane.OK_OPTION) {
+                    if(product != null){
+                        try {
+                            // manejar la información ingresada en los JTextField para actualizar el proveedor
+                            String prodName = sView.getTfProdName().getText();
+                            int prodPrice = Integer.parseInt(sView.getTfProdPrice().getText());
+
+                            // Realizar las acciones necesarias con la información...
+
+                            // Remueve el producto anterior
+                            inventoryItems.remove(name);
+
+                            // Pone el proveedor actualizado
+                            Product prod = new Product(prodName,0,prodPrice);
+                            inventoryItems.put(prod.getItemName(),prod);
+
+                            // debuggear el hashmap de productos, que no se repita ni se modifique al agregar repetido
+                            System.out.println("Contenido de producto:");
+
+                            for (Map.Entry<String, Provider> entry : structure.getProviders().entrySet()) {
+                                System.out.println("producto: " + entry.getKey() + ", precio: " + entry.getValue().getProduct().getItemName());
+                            }
+                            chargeInventory(sView.getInventoryTableD());
+                            InventoryFileDB.saveProductsToFile(inventoryItems);
+                        } catch (NumberFormatException exception){
+                            JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Price must be a valid Number", "Input Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(sView.getComponent(0), "Error: Product doesn't exist", "Product Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No Product has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
     class EliProdButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Eliminando producto");
-        }
-    }
-    class ActProdButtonListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
         }
     }
 }

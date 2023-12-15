@@ -111,7 +111,7 @@ public class InventoryFileDB implements Serializable {
     }
 
 
-    public static void saveInventoryData(HashMap<String, Product> inventoryItems) {
+    public static void printInventoryItems(HashMap<String, Product> inventoryItems) {
         System.out.println(inventoryItems);
     }
 

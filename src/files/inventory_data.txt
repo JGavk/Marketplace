@@ -11,4 +11,7 @@ Price: 1200.0
   lentejas=Item name: lentejas
 Price: 2000.0
 
+  oro=Item name: oro
+Price: 350000.0
+
 }

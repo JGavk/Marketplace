@@ -8,7 +8,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class StructureView extends JFrame {
-    private final JTable tableProvider;
+    private JTable tableProvider;
+    private JTable inventoryTable;
     private JPanel agregarPanel;
     private JTextField addProvName;
     private JTextField addProductName;
@@ -38,7 +39,7 @@ public class StructureView extends JFrame {
     private JTextArea textArea1;
     private JTextField textField1;
 
-    private DefaultTableModel itemTable, inventoryTable, providorTable;
+    private DefaultTableModel itemTable, inventoryTableD, providorTable;
     private JTable table;
     private String nameField, selectedName;
     private int selectedRow, selectedQ;
@@ -53,6 +54,11 @@ public class StructureView extends JFrame {
     private JPanel addProdPane;
     private JTextField addProdName;
     private JTextField addProdPrice;
+    private JPanel actProdPane;
+    private JLabel prodName;
+    private JLabel prodPrice;
+    private JTextField tfProdName;
+    private JTextField tfProdPrice;
 
     public StructureView(){
         //Caracteristicas de la ventana
@@ -75,14 +81,14 @@ public class StructureView extends JFrame {
         table.setDefaultEditor(Object.class, null);
 
         //Tabla de inventario en la TabPanel de inventario
-        inventoryTable = new DefaultTableModel();
-        inventoryTable.addColumn("Product");
-        inventoryTable.addColumn("Price");
-        JTable table1 = new JTable(inventoryTable);
-        JScrollPane scrollPane2 = new JScrollPane(table1);
+        inventoryTableD = new DefaultTableModel();
+        inventoryTableD.addColumn("Product");
+        inventoryTableD.addColumn("Price");
+        inventoryTable = new JTable(inventoryTableD);
+        JScrollPane scrollPane2 = new JScrollPane(inventoryTable);
         inventoryPanel.add(scrollPane2);
-        table1.setModel(inventoryTable);
-        table1.setDefaultEditor(Object.class, null);
+        inventoryTable.setModel(inventoryTableD);
+        inventoryTable.setDefaultEditor(Object.class, null);
 
         providorTable = new DefaultTableModel();
         providorTable.addColumn("Name");
@@ -130,7 +136,7 @@ public class StructureView extends JFrame {
     }
 
     private void actionPerformed3(ActionEvent e4) {
-        controller.chargeInventory(inventoryTable);
+        controller.chargeInventory(inventoryTableD);
     }
 
     private void actionPerformed2(ActionEvent e3) {
@@ -244,6 +250,63 @@ public class StructureView extends JFrame {
         addProdPrice = new JTextField(10);
         addProdPane.add(addProdPrice);
     }
+    public void showActProdPanel(){
+        actProdPane = new JPanel();
+        actProdPane.setLayout(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10,10,10,10);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        prodName = new JLabel("");
+        actProdPane.add(prodName, gbc);
+
+        gbc.gridy = 1;
+        prodPrice = new JLabel("");
+        actProdPane.add(prodPrice, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        tfProdName = new JTextField(10);
+        controller.setPlaceholder(tfProdName, "Update producto");
+        actProdPane.add(tfProdName, gbc);
+
+        gbc.gridy = 1;
+        tfProdPrice = new JTextField(10);
+        controller.setPlaceholder(tfProdPrice, "Update precio");
+        actProdPane.add(tfProdPrice, gbc);
+    }
+
+    public DefaultTableModel getInventoryTableD() {
+        return inventoryTableD;
+    }
+    public JTable getInventoryTable(){
+        return inventoryTable;
+    }
+
+    public JLabel getProdName() {
+        return prodName;
+    }
+
+    public JLabel getProdPrice() {
+        return prodPrice;
+    }
+
+    public JTextField getTfProdName() {
+        return tfProdName;
+    }
+
+    public JTextField getTfProdPrice() {
+        return tfProdPrice;
+    }
+
+    public JPanel getActProdPane() {
+        return actProdPane;
+    }
 
     public JPanel getAddProdPane() {
         return addProdPane;
@@ -315,10 +378,6 @@ public class StructureView extends JFrame {
 
     public DefaultTableModel getItemTable() {
         return itemTable;
-    }
-
-    public DefaultTableModel getInventoryTable() {
-        return inventoryTable;
     }
 
     public void addBuyButtonListener(ActionListener listener){
