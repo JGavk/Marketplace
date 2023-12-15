@@ -36,8 +36,6 @@ public class StructureView extends JFrame {
     private JButton añadirButton;
     private JButton actualizarButton;
     private JButton borrarButton;
-    private JTextArea textArea1;
-    private JTextField textField1;
 
     private DefaultTableModel itemTable, inventoryTableD, providorTable;
     private JTable tableBought;

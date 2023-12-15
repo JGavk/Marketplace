@@ -185,10 +185,10 @@
                 <properties>
                   <preferredSize width="0" height="100"/>
                 </properties>
-                <border type="none"/>
+                <border type="none" title="Producto"/>
                 <children>
                   <grid id="76910" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-                    <constraints border-constraint="West"/>
+                    <constraints border-constraint="Center"/>
                     <properties/>
                     <border type="none"/>
                     <children>
@@ -219,43 +219,6 @@
                           <horizontalAlignment value="0"/>
                           <preferredSize width="78" height="30"/>
                           <text value="Cargar"/>
-                        </properties>
-                      </component>
-                    </children>
-                  </grid>
-                  <grid id="639b6" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-                    <constraints border-constraint="Center"/>
-                    <properties/>
-                    <border type="none"/>
-                    <children>
-                      <component id="4ff68" class="javax.swing.JLabel">
-                        <constraints/>
-                        <properties>
-                          <text value="Nombre Producto"/>
-                        </properties>
-                      </component>
-                      <component id="1daa4" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
-                        <constraints/>
-                        <properties>
-                          <preferredSize width="150" height="30"/>
-                        </properties>
-                      </component>
-                      <component id="a1ab8" class="javax.swing.JSeparator">
-                        <constraints/>
-                        <properties>
-                          <preferredSize width="40" height="3"/>
-                        </properties>
-                      </component>
-                      <component id="85bfb" class="javax.swing.JLabel">
-                        <constraints/>
-                        <properties>
-                          <text value="Precio"/>
-                        </properties>
-                      </component>
-                      <component id="c0cb9" class="javax.swing.JTextField" binding="textField1" default-binding="true">
-                        <constraints/>
-                        <properties>
-                          <preferredSize width="140" height="30"/>
                         </properties>
                       </component>
                     </children>
