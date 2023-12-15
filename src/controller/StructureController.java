@@ -173,6 +173,24 @@ public class StructureController {
         Product product = new Product(productName, 0, productPrice);
         structure.addProduct(product);
     }
+    public void delProduct(){
+        // Obtener la fila seleccionada
+        int selectedRow = sView.getInventoryTable().getSelectedRow();
+
+        // Verificar si hay una fila seleccionada
+        if (selectedRow != -1) {
+            // Datos que tiene la fila para mostrar el prov eliminando
+            String name = (String) sView.getInventoryTable().getValueAt(selectedRow, 0);
+
+            // funcion para eliminar un proveedor de la lista y del hashmap
+            sView.getInventoryTableD().removeRow(selectedRow);
+            structure.delProduct(name);
+            chargeInventory(sView.getInventoryTableD());
+            InventoryFileDB.saveProductsToFile(inventoryItems);
+        } else {
+            JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No Product has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     public void setPlaceholder(JTextField textField, String placeholder) {
         // Establecer el color de texto y el texto del marcador de posición
         textField.setForeground(Color.GRAY);
@@ -356,7 +374,6 @@ public class StructureController {
     class AddProdButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Añadiendo producto");
             sView.showAddProdPanel();
             int result = JOptionPane.showConfirmDialog(
                     sView.getContentPane(),
@@ -445,7 +462,7 @@ public class StructureController {
     class EliProdButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Eliminando producto");
+            delProduct();
         }
     }
 }
