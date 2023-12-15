@@ -40,7 +40,7 @@ public class StructureView extends JFrame {
     private JTextField textField1;
 
     private DefaultTableModel itemTable, inventoryTableD, providorTable;
-    private JTable table;
+    private JTable tableBought;
     private String nameField, selectedName;
     private int selectedRow, selectedQ;
     private JTextField addProductPrice;
@@ -74,11 +74,11 @@ public class StructureView extends JFrame {
         itemTable.addColumn("Product");
         itemTable.addColumn("Quantity");
         itemTable.addColumn("Total Price");
-        table = new JTable(itemTable);
-        JScrollPane scrollPane = new JScrollPane(table);
+        tableBought = new JTable(itemTable);
+        JScrollPane scrollPane = new JScrollPane(tableBought);
         tablePanel.add(scrollPane);
-        table.setModel(itemTable);
-        table.setDefaultEditor(Object.class, null);
+        tableBought.setModel(itemTable);
+        tableBought.setDefaultEditor(Object.class, null);
 
         //Tabla de inventario en la TabPanel de inventario
         inventoryTableD = new DefaultTableModel();
@@ -103,20 +103,20 @@ public class StructureView extends JFrame {
         addButton.addActionListener(this::actionPerformed);
         buyButton.setEnabled(false);
         deleteButton.addActionListener(this::actionDone);
-        btnCharge.addActionListener(this::actionPerformed3);
         editButton.addActionListener(this::actionPerformed2);
-        table.addMouseListener(new MouseAdapter() {
+        btnCharge.addActionListener(this::actionPerformed3);
+        tableBought.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                int row = table.rowAtPoint(e.getPoint());
-                selectedRow = table.getSelectedRow();
+                int row = tableBought.rowAtPoint(e.getPoint());
+                selectedRow = tableBought.getSelectedRow();
 
                 // Obtener el objeto correspondiente del modelo
                 if (row >= 0) {
                     Object rowData = itemTable.getDataVector().elementAt(row);
-                    selectedName = (String) table.getValueAt(selectedRow,0);
-                    selectedQ = (int) table.getValueAt(selectedRow, 1);
+                    selectedName = (String) tableBought.getValueAt(selectedRow,0);
+                    selectedQ = (int) tableBought.getValueAt(selectedRow, 1);
                 }
             }
         });
@@ -140,13 +140,16 @@ public class StructureView extends JFrame {
     }
 
     private void actionPerformed2(ActionEvent e3) {
-        String quantityInput = JOptionPane.showInputDialog("Ingrese cantidad ");
-        try {
-            int intValue = Integer.parseInt(quantityInput);
-            controller.updateThing(this.selectedName, intValue, itemTable, selectedRow);
-        } catch (NumberFormatException e) {
-
-            JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid integer.", "Error", JOptionPane.ERROR_MESSAGE);
+        if(this.selectedName != null){
+            String quantityInput = JOptionPane.showInputDialog("Ingrese cantidad ");
+            try {
+                int intValue = Integer.parseInt(quantityInput);
+                controller.updateThing(this.selectedName, intValue, itemTable, selectedRow);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid integer.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Select something!! ", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -179,7 +182,6 @@ public class StructureView extends JFrame {
     public void setStructureController(StructureController controller) {
         this.controller = controller;
     }
-
     public void showAddProvPanel(){
         agregarPanel = new JPanel();
         agregarPanel.add(new JLabel("Provider Name:"));

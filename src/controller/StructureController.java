@@ -464,5 +464,6 @@ public class StructureController {
         public void actionPerformed(ActionEvent e) {
             delProduct();
         }
+
     }
 }
