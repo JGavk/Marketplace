@@ -115,11 +115,6 @@ public class InventoryFileDB implements Serializable {
         return new Product(itemName, quantity, price);
     }
 
-
-    public static void printInventoryItems(HashMap<String, Product> inventoryItems) {
-        System.out.println(inventoryItems);
-    }
-
     public static void saveProductsToFile(HashMap<String, Product> products) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
             writer.write("{\n");

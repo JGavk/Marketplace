@@ -19,7 +19,7 @@ public class Structure implements Serializable {
     private HashMap<String, Provider> providers;
 
 
-    public Structure(){
+    public Structure() {
         productArrayList = new ArrayList<>();
         inventoryItems = new HashMap<>();
         providers = new HashMap<>();
@@ -28,9 +28,9 @@ public class Structure implements Serializable {
         InventoryFileDB.loadInventoryData(this);
 
         // File para proveedores
-        try{
-        providers.putAll(ProviderFileDB.procesarArchivo());
-        } catch(IOException e){
+        try {
+            providers.putAll(ProviderFileDB.procesarArchivo());
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -40,19 +40,20 @@ public class Structure implements Serializable {
 
         Product product = searchProduct(itemName);
         // Verifica si se agregó el producto al carrito
-        if (product != null){
+        if (product != null) {
             productArrayList.add(new Product(inventoryItems.get(itemName).getItemName(), amount, price));
         }
     }
+
     //Metodo para remover un item del arreglo
-    public void popProductArray(String itemName){
+    public void popProductArray(String itemName) {
         Product product = searchCarProduct(itemName);
-        if (product != null){
+        if (product != null) {
             boolean removed = productArrayList.remove(product);
         }
     }
 
-//Metodo de update item del arreglo dando nueva cantidad y precio
+    //Metodo de update item del arreglo dando nueva cantidad y precio
     public Product updateProduct(String itemName, int quantity) {
         Product item = null;
         for (Product product : productArrayList) {
@@ -67,28 +68,30 @@ public class Structure implements Serializable {
         }
         return item;
     }
-//getter del arreglo para pruebas
-    public ArrayList<Product> getItemArray(){
-        System.out.println(productArrayList);
+
+    //getter del arreglo para pruebas
+    public ArrayList<Product> getItemArray() {
         return productArrayList;
     }
+
     //Metodo de limpieza
-    public void clearItemArray(){
+    public void clearItemArray() {
         productArrayList.clear();
     }
 
     //Metodo de busqueda en HashMap
-    public Product searchProduct(String itemName){
+    public Product searchProduct(String itemName) {
         Product producto = inventoryItems.get(itemName);
         // verifica si existe el producto
-        if (producto != null){
+        if (producto != null) {
             return producto;
         } else {
             return null;
         }
     }
-//Metodo de deleteo item en arreglo
-    public Product searchCarProduct(String itemName){
+
+    //Metodo de deleteo item en arreglo
+    public Product searchCarProduct(String itemName) {
         ArrayList<Product> exist = new ArrayList<>();
         productArrayList.forEach(obj -> {
             if ((obj.getItemName()).equals(itemName)) {
@@ -99,7 +102,7 @@ public class Structure implements Serializable {
         if (!exist.isEmpty()) {
             return exist.get(0);
         } else {
-            return  null;
+            return null;
         }
     }
 
@@ -112,7 +115,8 @@ public class Structure implements Serializable {
         }
         return null;
     }
-    public Product getProduct(String name){
+
+    public Product getProduct(String name) {
         return inventoryItems.getOrDefault(name, null);
     }
 
@@ -120,23 +124,27 @@ public class Structure implements Serializable {
         return providers;
     }
 
-    public void addProvider(Provider provider){
-        if (provider != null){
+    public void addProvider(Provider provider) {
+        if (provider != null) {
             providers.put(provider.getName(), provider);
         }
     }
-    public void delProvider(String providerName){
+
+    public void delProvider(String providerName) {
         providers.remove(providerName);
     }
-    public void delProduct(String productName){
+
+    public void delProduct(String productName) {
         inventoryItems.remove(productName);
     }
-    public Provider getProvider(String providerName){
+
+    public Provider getProvider(String providerName) {
         return providers.getOrDefault(providerName, null);
     }
-    public void addProduct(Product product){
-        if(product != null){
-            inventoryItems.put(product.getItemName(),product);
+
+    public void addProduct(Product product) {
+        if (product != null) {
+            inventoryItems.put(product.getItemName(), product);
         }
     }
 
@@ -145,7 +153,7 @@ public class Structure implements Serializable {
     }
 
     //Creador de txt para archivo de compra de uno o más objetos
-    public void printBought(Client cliente)  {
+    public void printBought(Client cliente) {
 
         try {
             UUID transactionNum = UUID.randomUUID();
@@ -154,13 +162,13 @@ public class Structure implements Serializable {
             PrintWriter pw = new PrintWriter(dataText);
             pw.println("Transaction number  : " + transactionNum);
             pw.println("Cliente Id: " + cliente.getId() + "\n" +
-                        "Cliente Name: " + cliente.getName() + "\n");
-            pw.println("Item             |      Amount              |    Price  " );
+                    "Cliente Name: " + cliente.getName() + "\n");
+            pw.println("Item             |      Amount              |    Price  ");
 
             productArrayList.forEach(obj -> {
-                pw.println(obj.getItemName() +  "                    " + obj.getCantidad() + "                    " + obj.getPrice());
+                pw.println(obj.getItemName() + "                    " + obj.getCantidad() + "                    " + obj.getPrice());
             });
-            if (dataText != null){
+            if (dataText != null) {
                 dataText.close();
             }
 
@@ -172,9 +180,4 @@ public class Structure implements Serializable {
     public void updateInventoryItems(HashMap<String, Product> newItems) {
         inventoryItems.putAll(newItems);
     }
-
-    public void updateProviders(HashMap<String, Provider> newItems) {
-        providers.putAll(newItems);
-    }
-
 }

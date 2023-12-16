@@ -5,13 +5,19 @@ Price: 2000.0
   tomate=Item name: tomate
 Price: 1000.0
 
+  cuaderno=Item name: cuaderno
+Price: 4000.0
+
+  Pepsi=Item name: Pepsi
+Price: 5000.0
+
   cebolla=Item name: cebolla
 Price: 1200.0
 
   lentejas=Item name: lentejas
 Price: 2000.0
 
-  cuaderno=Item name: cuaderno
-Price: 4000.0
+  oro=Item name: oro
+Price: 300000.0
 
 }

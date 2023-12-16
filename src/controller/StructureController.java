@@ -147,7 +147,6 @@ public class StructureController {
             inventoryItems.put(producto.getItemName(),producto);
             chargeInventory(sView.getInventoryTableD());
             InventoryFileDB.saveProductsToFile(inventoryItems);
-            System.out.println("Abasteciendo producto: " + name + ", " + product + ", " + stringPrice);
         } else {
             JOptionPane.showMessageDialog(sView.getComponent(0), "Error: No provider has been selected", "Select Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -253,9 +252,6 @@ public class StructureController {
                         Product product = new Product(name, quantity, price);
                         clientProducts.add(product);
                     }
-                    for (Product product : clientProducts) {
-                        System.out.println(product);
-                    }
                     Client cliente = new Client(clientId, clientName, clientProducts);
                     structure.printBought(cliente);
                     structure.clearItemArray();
@@ -349,13 +345,6 @@ public class StructureController {
                             // Pone el proveedor actualizado
                             Provider prov = new Provider(provName, prod);
                             structure.getProviders().put(prov.getName(),prov);
-
-                            // debuggear el hashmap de proveedores, que no se repita ni se modifique al agregar repetido
-                            System.out.println("Contenido de proveedores:");
-
-                            for (Map.Entry<String, Provider> entry : structure.getProviders().entrySet()) {
-                                System.out.println("Proveedor: " + entry.getKey() + ", Producto: " + entry.getValue().getProduct().getItemName());
-                            }
                             listarProviders();
                             ProviderFileDB.saveProviderToFile(structure.getProviders());
                         } catch (NumberFormatException exception){
@@ -434,22 +423,13 @@ public class StructureController {
                             // manejar la información ingresada en los JTextField para actualizar el proveedor
                             String prodName = sView.getTfProdName().getText();
                             int prodPrice = Integer.parseInt(sView.getTfProdPrice().getText());
-
                             // Realizar las acciones necesarias con la información...
 
                             // Remueve el producto anterior
                             inventoryItems.remove(name);
-
                             // Pone el proveedor actualizado
                             Product prod = new Product(prodName,0,prodPrice);
                             inventoryItems.put(prod.getItemName(),prod);
-
-                            // debuggear el hashmap de productos, que no se repita ni se modifique al agregar repetido
-                            System.out.println("Contenido de producto:");
-
-                            for (Map.Entry<String, Provider> entry : structure.getProviders().entrySet()) {
-                                System.out.println("producto: " + entry.getKey() + ", precio: " + entry.getValue().getProduct().getItemName());
-                            }
                             chargeInventory(sView.getInventoryTableD());
                             InventoryFileDB.saveProductsToFile(inventoryItems);
                         } catch (NumberFormatException exception){

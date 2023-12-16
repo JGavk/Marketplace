@@ -1,4 +1,9 @@
 {
+  Coca-Cola=name: Coca-Cola
+Item name: Pepsi
+Price: 5000.0
+
+
   Farms=name: Farms
 Item name: fresa
 Price: 800.0
