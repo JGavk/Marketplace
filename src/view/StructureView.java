@@ -1,3 +1,8 @@
+/*
+Juan Pablo Puerta Gavira 2240033
+Yeimer Armando Mendez Sanchez 2243583
+Miguel Angel Soto
+* */
 package view;
 
 import controller.StructureController;

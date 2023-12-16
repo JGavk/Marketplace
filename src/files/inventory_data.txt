@@ -11,4 +11,7 @@ Price: 1200.0
   lentejas=Item name: lentejas
 Price: 2000.0
 
+  cuaderno=Item name: cuaderno
+Price: 4000.0
+
 }
